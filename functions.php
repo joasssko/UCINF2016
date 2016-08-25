@@ -1,6 +1,10 @@
 <?php if ( function_exists('add_theme_support') ) {
 add_theme_support('post-thumbnails');
-//add_image_size('head', 1920, 800, true );
+add_image_size('tabsizeTall', 1280, 680, true );
+add_image_size('biggerHead', 1440, 400, true );
+add_image_size('newsBig', 640, 464, true );
+add_image_size('newsSmall', 610, 441, true );
+add_image_size('badgeAcreditacion' , 190, 116 , true );
 }
 /* 
 add_filter('image_size_names_choose', 'my_image_sizes');
@@ -23,7 +27,9 @@ if(is_single()){
 /* Add support for wp_nav_menu() */
 function register_my_menu() {
 	register_nav_menu( 'primary', 'Menú Principal');
-	register_nav_menu( 'secondary', 'Menú Superior');
+	register_nav_menu( 'side-menu', 'Menú lateral');
+	register_nav_menu( 'top-menu', 'Menú Superior');
+	register_nav_menu( 'footer', 'Menú Footer');
 //	register_nav_menu( 'third', 'Menú interiores');
 }
 add_action( 'init', 'register_my_menu' );
@@ -32,10 +38,12 @@ add_action( 'init', 'register_my_menu' );
 function call_scripts() {
 	wp_deregister_script('jquery');
 	wp_register_script('jquery', 'http://code.jquery.com/jquery-1.10.0.min.js');
+	wp_register_script('foundation', get_template_directory_uri() . '/js/foundation.min.js');
     wp_register_script('core', get_template_directory_uri() . '/js/core.js');
 
-    wp_enqueue_script('jquery');
-    wp_enqueue_script('core');
+    wp_enqueue_script('jquery' , '' , '' , '' , true);
+	wp_enqueue_script('foundation', '' , '' , '' , true);
+    wp_enqueue_script('core', '' , '' , '' , true);
 }    
  
 add_action('wp_enqueue_scripts', 'call_scripts');
@@ -44,25 +52,106 @@ add_action('wp_enqueue_scripts', 'call_scripts');
 
 //Post type register
 
-/* add_action('init', 'rutas_register');
-function rutas_register() {
+add_action('init', 'facultades_register');
+function facultades_register() {
     $args = array(
-        'label' => 'Rutas',
-        'singular_label' => 'Ruta',
+        'label' => 'Facultades',
+        'singular_label' => 'Facultad',
         'public' => true,
 		'menu_position' => 5, 
         '_builtin' => false,
         'capability_type' => 'post',
-		'has_archive' => true,
-        'hierarchical' => false,
-        'rewrite' => array( 'slug' => 'rutas'),
-        'supports' => array('title', 'editor' , 'excerpt' , 'thumbnail' , 'custom-fields')
+		'has_archive' => false,
+        'hierarchical' => true,
+        'rewrite' => array( 'slug' => 'facultades'),
+        'supports' => array('title', 'editor' , 'excerpt' , 'thumbnail' )
     );
-    register_post_type('rutas', $args);
+    register_post_type('facultades', $args);
     flush_rewrite_rules();
 }
- */
-//register_taxonomy("regiones", array('rutas'), array("hierarchical" => true, "label" => "Regiones", "singular_label" => "Región", "rewrite" => true));
+
+add_action('init', 'carreras_register');
+function carreras_register() {
+    $args = array(
+        'label' => 'Carreras',
+        'singular_label' => 'Carrera',
+        'public' => true,
+		'menu_position' => 5, 
+        '_builtin' => false,
+        'capability_type' => 'post',
+		'has_archive' => false,
+        'hierarchical' => true,
+        'rewrite' => array( 'slug' => 'facultades/%facultad%' , 'with_front' => false),
+		//'rewrite' => false,
+        'supports' => array('title', 'editor' , 'excerpt' , 'thumbnail' )
+    );
+    register_post_type('carreras', $args);
+    flush_rewrite_rules();
+}
+
+
+register_taxonomy("facultad", array('carreras','post' , 'docentes' , 'testimonios'), array("hierarchical" => true, "label" => "Facultades", "singular_label" => "Facultad", 'rewrite' => true ));
+
+add_action('init', 'docentes_register');
+function docentes_register() {
+    $args = array(
+        'label' => 'Docentes',
+        'singular_label' => 'Docente',
+        'public' => true,
+		'menu_position' => 5, 
+        '_builtin' => false,
+        'capability_type' => 'post',
+		'has_archive' => false,
+        'hierarchical' => true,
+        'rewrite' => array( 'slug' => 'docentes'),
+        'supports' => array('title', 'editor' , 'excerpt' , 'thumbnail' )
+    );
+    register_post_type('docentes', $args);
+    flush_rewrite_rules();
+}
+
+add_action('init', 'testimonios_register');
+function testimonios_register() {
+    $args = array(
+        'label' => 'Testimonios',
+        'singular_label' => 'Testimonio',
+        'public' => true,
+		'menu_position' => 10, 
+        '_builtin' => false,
+        'capability_type' => 'post',
+		'has_archive' => false,
+        'hierarchical' => false,
+        'rewrite' => array( 'slug' => 'testimonios'),
+        'supports' => array('title', 'editor' , 'excerpt' , 'thumbnail' )
+    );
+    register_post_type('testimonios', $args);
+    flush_rewrite_rules();
+}
+
+/* function wpse_5308_post_type_link( $link, $post ) {
+    if ( $post->post_type === 'carreras' ) {
+        if ( $terms = get_the_terms( $post->ID, 'facultad' ) )
+            $link = str_replace( '%facultad%', current( $terms )->slug, $link );
+    }
+
+    return $link;
+}
+
+add_filter( 'post_type_link', 'wpse_5308_post_type_link', 10, 2 ); */
+
+function filter_post_type_link($link, $post)
+{
+    switch($post->post_type){
+        case 'carreras':
+            if ($cats = get_the_terms($post->ID, 'facultad'))
+            $link = str_replace('%facultad%', array_pop($cats)->slug, $link);
+            break;
+    }
+    return $link;
+}
+
+add_filter('post_type_link', 'filter_post_type_link', 10, 2);
+
 
 ?>
 <?php 

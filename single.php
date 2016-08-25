@@ -19,32 +19,31 @@ $bgsrc = wp_get_attachment_image_src($bgid,'head', true);
 </div>
 
 
-<main class="single">
-	<div class="container">
-		<div class="row">
+<main class="single row">
+
         
-        	<div class="col-md-9">
+        	<div class="columns small-12 large-9">
             	<div id="breadcrumbs">
                     <ul>
                         <li>Usted está en:</li>
                         <li><a href="<?php echo get_bloginfo('url')?>">Home</a></li>
-                        <li><a href="<?php echo get_post_type_archive_link('post')?>"><span class="fa fa-angle-right"></span> Noticias</a></li>
-                        <li><strong><span class="fa fa-angle-right"></span> <?php echo $post->post_title?></strong></li>
+                        <li><a href="<?php echo get_post_type_archive_link('post')?>"><i class="fa fa-angle-right"></i> Noticias</a></li>
+                        <li><strong><i class="fa fa-angle-right"></i> <?php echo $post->post_title?></strong></li>
                     </ul>
                 </div>
                 
                 <h1><?php echo $post->post_title?></h1>
                 
-                <div class="metadata">
-                	<div class="col-md-6 col-esp">
-						<?php $author_avatar = get_field('author_avatar' , 'user_'.$post->post_author);?>
+                <div class="metadata row">
+                	<div class="small-6 columns">
+						<?php $author_avatar = get_field('imagen_para_mostrar' , 'user_'.$post->post_author);?>
                         <?php $author_avatar_img = wp_get_attachment_image_src($author_avatar, 'thumbnail')?>
                         <img src="<?php echo $author_avatar_img[0]?>" class="img-circle"  alt="">
                         <?php $author_data = get_userdata($post->post_author);?>
-                        <h4>Por: <strong><?php echo $author_data->display_name?></strong></h4>
+                        <span>Por: <strong><?php echo $author_data->display_name?></strong></span>
                     </div>
-                	<div class="col-md-6 col-esp">
-                    	<span>Fecha: <strong><?php echo get_the_date('d \d\e M \d\e\l Y' , $post->ID)?></strong></span>
+                	<div class="small-6 columns">
+                    	<span style="display: inline-block; padding: 10px 0 0 0;">Fecha: <strong><?php echo get_the_date('d \d\e M \d\e\l Y' , $post->ID)?></strong></span>
                     </div>
                    	
                     
@@ -60,7 +59,7 @@ $bgsrc = wp_get_attachment_image_src($bgid,'head', true);
                 
             </div>
             
-        	<div class="col-md-3">
+        	<div class="columns small-12 large-3">
                 <div class="share">
 
                     <div class="facebook">
@@ -80,50 +79,55 @@ $bgsrc = wp_get_attachment_image_src($bgid,'head', true);
         	
             
             
-        </div>
-	</div>
+
+
 </main>
 
 
-<div id="recent-news" class="single">
-	<div class="container">
-		<div class="row">
-        	<h2>Noticias recientes</h2>
-            <?php 
-			$news = get_posts(array('post_type' => 'post' , 'numberposts' => 3));
-			foreach($news as $note){?>
-				
-                <div class="col-md-4">
-                	<figure>
-                    	
-                		<figcaption class="news-date">
-                        	<span><?php echo get_the_date('d' , $note->ID)?></span>
-                        	<small><?php echo get_the_date('M' , $note->ID)?> <?php echo get_the_date('Y' , $note->ID)?></small>
-                        </figcaption>
-                        
-						<a href="<?php echo get_permalink($note->ID)?>" rel="nofollow" title="Ver <?php echo $post->post_title?>"><?php echo get_the_post_thumbnail($note->ID , 'route' , array('class' => 'img-responsive'))?></a>
-                        
-                        <figcaption class="news-abstract">
-                        	<h3><?php echo $note->post_title?></h3>
-                            <p><?php echo $note->post_excerpt?></p>
-                            <a href="<?php echo get_permalink($note->ID)?>" rel="nofollow" title="Ver <?php echo $post->post_title?>">Ver más <span class="fa fa-arrow-right fa-fw"></span></a>
-                            <div class="clear miniseparator"></div>
-                        </figcaption>
-                        
-                        <figcaption class="news-author">
-                        	<?php $author_avatar = get_field('author_avatar' , 'user_'.$note->post_author);?>
-                            <?php $author_avatar_img = wp_get_attachment_image_src($author_avatar, 'thumbnail')?>
-                        	<img src="<?php echo $author_avatar_img[0]?>" class="img-circle"  alt="">
-                           <?php $author_data = get_userdata($note->post_author);?>
-                           <h3>Por: <strong><?php echo $author_data->display_name?></strong></h3>
-                        </figcaption>
-                        
-                	</figure>
-                </div>
-                
-			<?php }?>
-        </div>
+<?php $news = get_posts(array('post_type' => 'post' , 'numberposts' => 2)); ?>
+
+<section id="news" class="row  row-wide">
+	<div class="row">
+		<!-- Heading -->
+		<div class="small-12  columns  page-heading">
+			<h1 class="page-heading__title">Noticias recientes</h1>
+		</div>
+		<!-- end .page-heading -->
+
+		<!-- Container -->
+		<div class="  news-container">
+				<?php foreach($news as $article): ?>
+				<!-- New 1 -->
+				<article class="small-6  columns  news-block">
+					<div class="row">
+						<div class="small-12  medium-4  large-4  columns  news-block__heading">
+							<a href="<?php echo get_permalink($article->ID)?>" class="news-block__heading-anchor" title="Leer más">
+								<?php echo get_the_post_thumbnail($article->ID , 'newsSmall' , array('class' => 'news-block__heading-image' , 'alt' => $article->post_title))?>
+							</a>
+						</div>
+						<!-- end .news-block__heading -->
+
+						<div class="small-12  medium-8  large-8  columns  news-block__content">
+							<div class="row">
+								<h1 class="news-block__content-title"><?php echo $article->post_title ?></h1>
+								<p class="news-block__content-excerpt"><?php echo $article->post_excerpt ?>... <a href="<?php echo get_permalink($article->ID)?>" class="news-block__content-anchor" title="Continuar leyendo">Continuar leyendo</a></p>
+							</div>
+							<!-- end .row -->
+						</div>
+						<!-- end .news-block__content -->
+					</div>
+					<!-- end .row -->
+				</article>
+				<!-- end .news-block -->
+				<?php endforeach?>
+
+
+		</div>
+		<!-- end .news-container -->
 	</div>
-</div>
+	<!-- end .row -->
+</section>
+<!-- end #news -->
+
 
 <?php get_footer()?>
