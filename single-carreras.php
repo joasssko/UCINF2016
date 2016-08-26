@@ -81,65 +81,126 @@
 					</div>
 					<!-- end .career-details -->
 					
-					<!-- Perfil de Egreso / Campo Laboral -->
-					<div class="small-12  medium-6  large-7  columns  career-block">
-						<h1 class="career-block__title">Perfil de Egreso</h1>
-						<div class="career-block__content">
-							<?php echo apply_filters('the_content' , get_field('perfil_de_egreso'))?>
-						</div>
-						<h1 class="career-block__title">Campo Laboral</h1>
-						<div class="career-block__content">
-							<?php echo apply_filters('the_content' , get_field('campo_laboral'))?>
-						</div>
-					</div>
-					<!-- end .career-block -->
 					
-					<?php $test = get_field('testimonio')?>
 					
-					<?php $testimonio = get_post( $test[0] )?>
-					<?php //var_dump($testimonio)?>
-					<!-- Testimonio -->
-					<div class="small-12  medium-6  large-5  columns  career-testimony">
-						<div class="small-12  columns  career-testimony__media">
-							<iframe src="https://www.youtube.com/embed/KzH9SaplkAs" allowfullscreen></iframe>
-						</div>
-						<!-- end .career-testimony-media -->
-
-						<div class="small-12  columns  career-testimony__container">
-							<h1 class="career-testiomy__container-title">Testimonio</h1>
-							<h2 class="career-testimony__container-name  open">
-								Constanza Rojas<small class="career-testimony__container-name-details">720 puntos en PSU, matriculado en kinesiología. Admisión 2016.</small>
-							</h2>
-							<hr class="career-testimony__container-divider">
-							<div class="career-testimony__container-text">
-								<p>Me matriculé en kinesiología porque tengo la vocación, me gusta la investigación, la tecnología, saber cómo funciona el cuerpo, los procesos, lo que se puede hacer por el mundo a través de esta ciencia y lo que falta por hacer. Escogí la Universidad UCINF porque me gustó su cuerpo docente, su infraestructura (laboratorios) y porque tiene hartos Campos Clínicos, características que no encontré en otras universidades”.</p>
+					<?php if(get_field('testimonio')){?>
+						<!-- Perfil de Egreso / Campo Laboral -->
+						<div class="small-12  medium-6  large-7  columns  career-block">
+							<h1 class="career-block__title">Perfil de Egreso</h1>
+							<div class="career-block__content">
+								<?php echo apply_filters('the_content' , get_field('perfil_de_egreso'))?>
+							</div>
+							<h1 class="career-block__title">Campo Laboral</h1>
+							<div class="career-block__content">
+								<?php echo apply_filters('the_content' , get_field('campo_laboral'))?>
 							</div>
 						</div>
-						<!-- end .career-testimony__container -->
-					</div>
-					<!-- end .career-testimony -->
+						<!-- end .career-block -->
+
+						<?php $test = get_field('testimonio')?>				
+						<?php $testimonio = get_post( $test[0] )?>
+
+						<!-- Testimonio -->
+						<div class="small-12  medium-6  large-5  columns  career-testimony">
+							<div class="small-12  columns  career-testimony__media">
+								<?php if(get_field('videoid' , $test[0])){?>
+									<iframe src="https://www.youtube.com/embed/KzH9SaplkAs" allowfullscreen></iframe>
+								<?php }else{ 
+									$test_image = wp_get_attachment_image_src(get_post_thumbnail_id($test[0]) , 'newsBig')?>
+									<img src="<?php echo $test_image[0]?>" alt="">
+								<?php }?>
+							</div>
+							<!-- end .career-testimony-media -->
+
+							<div class="small-12  columns  career-testimony__container">
+								<h1 class="career-testiomy__container-title">Testimonio</h1>
+								<h2 class="career-testimony__container-name  open">
+									<?php echo $testimonio->post_title?>
+									<small class="career-testimony__container-name-details"><?php echo $testimonio->post_excerpt?></small>
+								</h2>
+								<hr class="career-testimony__container-divider">
+								<div class="career-testimony__container-text">
+									<?php echo apply_filters('the_content' , $testimonio->post_content)?>
+								</div>
+							</div>
+							<!-- end .career-testimony__container -->
+						</div>
+						<!-- end .career-testimony -->
+					<?php }else{?>
+					
+						<div class="career-block">
+							<div class="small-12 medium-7 large-8 columns">
+								<h1 class="career-block__title">Perfil de Egreso</h1>
+								<div class="career-block__content">
+									<?php echo apply_filters('the_content' , get_field('perfil_de_egreso'))?>
+								</div>
+							</div>
+							<div class="small-12 medium-5 large-4 columns">
+								<h1 class="career-block__title">Campo Laboral</h1>
+								<div class="career-block__content">
+									<?php echo apply_filters('the_content' , get_field('campo_laboral'))?>
+								</div>
+							</div>
+						</div>
+					
+					<?php }?>
+					
 				</section>
 				<!-- end .career-main -->
 				
-				<!-- Features -->
+				
+				
+				<!-- Faculties (Facultades) -->
+				<!--<section id="features" class="row" data-interchange="[partials/_home/categories.html, small]"></section>-->
 				<section id="features" class="row">
 					<div class="small-12  columns  features-wrapper">
 						<!-- Tabs -->
+						<?php $fslug = get_ID_by_slug($terms[0]->slug)?>
+						<?php $modulos = get_field('modulos' , $fslug );?>
+						
 						<ul id="features-tabs" class="tabs  tabs--by-4" data-tabs>
-							<li class="tabs-title  is-active"><a href="#features_panel1" class="trsn" aria-selected="true">Laboratorios</a></li>
-							<li class="tabs-title"><a href="#features_panel2" class="trsn">Salas de Clases</a></li>
-							<li class="tabs-title"><a href="#features_panel3" class="trsn">Campos Clínicos</a></li>
-							<li class="tabs-title"><a href="#features_panel4" class="trsn">Centro de Investigación</a></li>
+							<?php $cf = 0?>
+							<?php foreach($modulos as $modulo):?>
+							<?php $cf++ ?>
+								<li class="tabs-title <?php echo $cf == 1 ? 'is-active' : '';?>"><a href="#features_<?php echo $modulo->post_name ?>" class="trsn" aria-selected="true"><?php echo $modulo->post_title ?></a></li>
+							<?php endforeach?>
+							
 						</ul>
 						<!-- end #features-tabs -->
 
+					
 						<!-- Content -->
-						<div id="features-content" class="tabs-content" data-tabs-content="features-tabs" data-interchange="[partials/_career/career_features.html, small]"></div>
+						
+						<div id="features-content" class="tabs-content" data-tabs-content="features-tabs">
+							
+							<?php $cft = 0?>
+							<?php foreach($modulos as $modulo):?>
+							<?php $cft++ ?>
+							<!-- Panel 1 -->
+							<div id="features_<?php echo $modulo->post_name ?>" class="tabs-panel  <?php echo $cft == 1 ? 'is-active' : '';?>">
+								<div class="small-12  medium-6  large-6  columns  tabs-panel__block">
+									<div class="small-12 large-6  columns  tabs-panel__block-wrapper">
+										<h1 class="tabs-panel__block-title montse">
+											<?php echo $modulo->post_title ?>
+										</h1>
+										<p class="tabs-panel__block-text"><?php echo $modulo->post_excerpt ?></p>
+										<a href="<?php echo get_permalink($modulo->ID)?>" class="tabs-panel__block-anchor  anchor-link" title="Conoce más">Conoce más <i class="fa fa-angle-double-right fa-fw"></i></a>
+									</div>
+									<!-- end .tabs-panel__block-wrapper -->
+								</div>
+								<?php echo get_the_post_thumbnail($modulo->ID , 'tabsizeHalf' , array('class' => 'tab-panel__image img-full' , 'alt' => $modulo->post_title))?>
+								
+							</div>
+							<!-- end .tabs-panel -->
+							<?php endforeach ?>
+							
+									
+						</div>
 						<!-- end .tabs-content -->
 					</div>
-					<!-- end .features-wrapper -->
+					<!-- end .faculties-wrapper -->
 				</section>
-				<!-- end #features -->
+				<!-- end #faculties -->
 				
 				<!-- News -->
 				<?php $news = get_posts(array('post_type' => 'post' , 'numberposts' => 2 , 'facultad' => $terms[0]->name)); ?>

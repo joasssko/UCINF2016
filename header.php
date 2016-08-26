@@ -188,6 +188,23 @@
 					<!-- end .main-nav__container -->
 				</nav>
 				<!-- end #main-nav -->
+				
+				<!-- Mobile Nav (Medium & Small devices navigation) -->
+				<div id="mobile-nav" class="title-bar  hide-for-large">
+					<div class="mobile-nav__center">
+						<a href="index.html" class="mobile-nav__center-anchor">
+							<img src="images/logos/logo-ucinf.png" class="mobile-nav__center-logo" alt="Logo UCINF">
+						</a>
+					</div>
+					<!-- end .mobile-nav__center -->
+
+					<div class="title-bar-right  mobile-nav__right">
+						<button class="mobile-nav__button  trsn" type="button" data-open="sidebar-nav"><i class="fa fa-bars fa-fw"></i> Menu</button>
+					</div>
+					<!-- end .mobile-nav__right -->
+				</div>
+				<!-- end #mobile-nav -->	
+				
 			</header>
 			<!-- end Header -->
 

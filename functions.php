@@ -1,6 +1,7 @@
 <?php if ( function_exists('add_theme_support') ) {
 add_theme_support('post-thumbnails');
 add_image_size('tabsizeTall', 1280, 680, true );
+add_image_size('tabsizeHalf', 1280, 450, true );
 add_image_size('biggerHead', 1440, 400, true );
 add_image_size('newsBig', 640, 464, true );
 add_image_size('newsSmall', 610, 441, true );
@@ -90,7 +91,9 @@ function carreras_register() {
 }
 
 
-register_taxonomy("facultad", array('carreras','post' , 'docentes' , 'testimonios'), array("hierarchical" => true, "label" => "Facultades", "singular_label" => "Facultad", 'rewrite' => true ));
+register_taxonomy("facultad", array('carreras','post' , 'testimonios'), array("hierarchical" => true, "label" => "Facultades", "singular_label" => "Facultad", 'rewrite' => true ));
+
+register_taxonomy("nivel", array('carreras'), array("hierarchical" => true, "label" => "Nivel del programa", "singular_label" => "Nivel", 'rewrite' => true ));
 
 add_action('init', 'docentes_register');
 function docentes_register() {
@@ -128,6 +131,45 @@ function testimonios_register() {
     flush_rewrite_rules();
 }
 
+add_action('init', 'features_register');
+function features_register() {
+    $args = array(
+        'label' => 'Módulos',
+        'singular_label' => 'Modulo',
+		'description' => 'Corresponde a cada uno de los elementos específicos de cada facultad, ejemplo Cie',
+        'public' => true,
+		'menu_position' => 10, 
+        '_builtin' => false,
+        'capability_type' => 'post',
+		'has_archive' => false,
+        'hierarchical' => true,
+        'rewrite' => array( 'slug' => 'modulos-de-facultad'),
+        'supports' => array('title', 'editor' , 'excerpt' , 'thumbnail' )
+    );
+    register_post_type('features', $args);
+    flush_rewrite_rules();
+}
+
+
+add_action('init', 'slider_register');
+function slider_register() {
+    $args = array(
+        'label' => 'Slider',
+        'singular_label' => 'Slide',
+		'description' => 'Rotativo de imágenes que se incluye en la cabecera del home',
+        'public' => true,
+		'menu_position' => 20, 
+        '_builtin' => false,
+        'capability_type' => 'post',
+		'has_archive' => false,
+        'hierarchical' => false,
+        'rewrite' => array( 'slug' => 'slider'),
+        'supports' => array('title', 'editor' , 'excerpt' , 'thumbnail' )
+    );
+    register_post_type('slider', $args);
+    flush_rewrite_rules();
+}
+
 /* function wpse_5308_post_type_link( $link, $post ) {
     if ( $post->post_type === 'carreras' ) {
         if ( $terms = get_the_terms( $post->ID, 'facultad' ) )
@@ -153,6 +195,19 @@ function filter_post_type_link($link, $post)
 add_filter('post_type_link', 'filter_post_type_link', 10, 2);
 
 
+?>
+<?php
+function get_ID_by_slug($post_slug) {
+	
+   if ( $post = get_page_by_path( $post_slug, OBJECT, 'facultades' ) ){
+	    $id = $post->ID;
+   }else{
+		$id = 0;
+   }
+	
+	return $id ;
+	
+}
 ?>
 <?php 
 function my_custom_login_logo() {

@@ -3,26 +3,32 @@
 $bgid = get_post_thumbnail_id();
 $bgsrc = wp_get_attachment_image_src($bgid,'head', true);
 ?>
-<div id="top" class="overlayed" style="background-image:url(<?php echo $bgsrc[0]?>); min-height:700px; background-attachment:fixed; background-size: 100% auto;">
-	<div class="container">
+
+<!-- Main Container -->
+<div id="career-container" class="off-canvas-content  main-container" style="min-height: 800px;" data-off-canvas-content>
+	<!-- Career Heading -->
+	<section class="row  row-wide  career-heading" style="background:url('<?php echo $bgsrc[0]?>') scroll no-repeat top center #FFFFFF;">
 		<div class="row">
-        
-        	<div class="jumbotron pre-heading">
-                <div class="container ">
-                    <h1><?php echo $post->post_title; ?></h1>
-                    <p><?php echo substr($post->post_content , 0, 60)?></p>
-                </div>
-            </div>
-        
-        </div>
-	</div>
-</div>
+			<div class="small-12  medium-8  large-7  columns  carrer-heading__content">
+				<h1 class="career-heading__content-title  open"><?php echo $post->post_title ?></h1>
+				
+			</div>
+			<!-- end .career-heading__content -->
+
+		</div>
+		<!-- end .row -->
+	</section>
+	<!-- end .career-heading -->
 
 
 <main class="single row">
-
+			
         
         	<div class="columns small-12 large-9">
+           		
+           		<div class="post-content">
+                	<p class="lead"><?php echo $post->post_excerpt?></p>
+				</div>
             	<div id="breadcrumbs">
                     <ul>
                         <li>Usted está en:</li>
@@ -31,8 +37,6 @@ $bgsrc = wp_get_attachment_image_src($bgid,'head', true);
                         <li><strong><i class="fa fa-angle-right"></i> <?php echo $post->post_title?></strong></li>
                     </ul>
                 </div>
-                
-                <h1><?php echo $post->post_title?></h1>
                 
                 <div class="metadata row">
                 	<div class="small-6 columns">
@@ -51,7 +55,6 @@ $bgsrc = wp_get_attachment_image_src($bgid,'head', true);
                 <div class="clear"></div>
                 
                 <div class="post-content">
-                	<p class="lead"><?php echo $post->post_excerpt?></p>
                 	<?php echo apply_filters('the_content' , $post->post_content)?>
                 </div>
                 
@@ -95,7 +98,7 @@ $bgsrc = wp_get_attachment_image_src($bgid,'head', true);
 		<!-- end .page-heading -->
 
 		<!-- Container -->
-		<div class="  news-container">
+		<div class=" news-container">
 				<?php foreach($news as $article): ?>
 				<!-- New 1 -->
 				<article class="small-6  columns  news-block">

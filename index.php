@@ -2,14 +2,16 @@
 
 <!-- Main Container -->
 			<div class="off-canvas-content  main-container" style="min-height: 800px;" data-off-canvas-content>
+				
+				<?php $slides = get_posts(array('post_type' => 'slider'))?>
+				<?php $bgSlide = wp_get_attachment_image_src( get_post_thumbnail_id($slides[0]->ID) , 'biggerHead')?>
 				<!-- Slideshow -->
 				<section id="slideshow" class="row  row-wide">
-					<img src="images/slideshow/slideshow-banner.jpg" class="img-full" alt="Slideshow Banner">
+					<img src="<?php echo $bgSlide[0]?>" class="img-full" alt="Slideshow Banner">
 				</section>
 				<!-- end #slideshow -->
 				
 				<!-- System (Sistema Continuo de estudios) -->
-				<!--<section id="system" class="row" data-interchange="[partials/_home/system.html, small]"></section>-->
 				<section id="system" class="row">
 					<!-- Content Left -->
 					<div class="small-12  medium-6  large-6  columns  system-content  system-content--left">
@@ -31,7 +33,7 @@
 										<div class="small-12  medium-6  medium-push-6  large-6  large-push-6  columns  system-block__heading" data-equalizer-watch="system-block-horizontal">
 											<div class="row">
 												<a href="#" class="system-block__heading-anchor" title="Ver oferta académica">
-													<img src="images/system/system-block-image-1.jpg" class="system-block__heading-image  img-full" alt="Imagen Pregrado">
+													<img src="<?php echo get_bloginfo('template_directory')?>/images/system-block-image-1.jpg" class="system-block__heading-image  img-full" alt="Imagen Pregrado">
 												</a>
 											</div>
 										</div>
@@ -63,7 +65,7 @@
 										<div class="small-12  columns  system-block__heading">
 											<div class="row">
 												<a href="#" class="system-block__heading-anchor" title="Ver programas">
-													<img src="images/system/system-block-image-2.jpg" class="system-block__heading-image  img-full" alt="Imagen Minor">
+													<img src="<?php echo get_bloginfo('template_directory')?>/images/system-block-image-2.jpg" class="system-block__heading-image  img-full" alt="Imagen Minor">
 												</a>
 											</div>
 											<!-- end .row -->
@@ -89,7 +91,7 @@
 										<div class="small-12  columns  system-block__heading">
 											<div class="row">
 												<a href="#" class="system-block__heading-anchor" title="Ve más allá">
-													<img src="images/system/system-block-image-3.jpg" class="system-block__heading-image  img-full" alt="Imagen Postgrado">
+													<img src="<?php echo get_bloginfo('template_directory')?>/images/system-block-image-3.jpg" class="system-block__heading-image  img-full" alt="Imagen Postgrado">
 												</a>
 											</div>
 											<!-- end .row -->
@@ -316,7 +318,7 @@
 					<!-- Block 1 (DAE) -->
 					<div class="small-12  medium-3  large-3  columns  shortcuts-block" data-equalizer-watch="shortcuts">
 						<a href="#" class="shortcuts-block__anchor" title="DAE">
-							<img src="images/shortcuts/shortcut-icon-dae.png" class="shortcuts-block__icon" alt="Icon DAE">
+							<img src="<?php echo get_bloginfo('template_directory')?>/images/shortcut-icon-dae.png" class="shortcuts-block__icon" alt="Icon DAE">
 							<h2 class="shortcuts-block__title">DAE</h2>
 							<p class="shortcuts-block__text">Phasellus convallis nisl varius blandit </p>
 						</a>
@@ -326,7 +328,7 @@
 					<!-- Block 2 (Alumnos) -->
 					<div class="small-12  medium-3  large-3  columns  shortcuts-block" data-equalizer-watch="shortcuts">
 						<a href="#" class="shortcuts-block__anchor" title="Alumnos">
-							<img src="images/shortcuts/shortcut-icon-alumnos.png" class="shortcuts-block__icon" alt="Icon Alumnos">
+							<img src="<?php echo get_bloginfo('template_directory')?>/images/shortcut-icon-alumnos.png" class="shortcuts-block__icon" alt="Icon Alumnos">
 							<h2 class="shortcuts-block__title">Alumnos</h2>
 							<p class="shortcuts-block__text">Phasellus convallis nisl varius blandit </p>
 						</a>
@@ -336,7 +338,7 @@
 					<!-- Block 3 (Postgrados) -->
 					<div class="small-12  medium-3  large-3  columns  shortcuts-block" data-equalizer-watch="shortcuts">
 						<a href="#" class="shortcuts-block__anchor" title="Postgrados">
-							<img src="images/shortcuts/shortcut-icon-postgrados.png" class="shortcuts-block__icon" alt="Icon Postgrados">
+							<img src="<?php echo get_bloginfo('template_directory')?>/images/shortcut-icon-postgrados.png" class="shortcuts-block__icon" alt="Icon Postgrados">
 							<h2 class="shortcuts-block__title">Postgrados</h2>
 							<p class="shortcuts-block__text">Phasellus convallis nisl varius blandit </p>
 						</a>
@@ -346,7 +348,7 @@
 					<!-- Block 3 (Egresados) -->
 					<div class="small-12  medium-3  large-3  columns  shortcuts-block" data-equalizer-watch="shortcuts">
 						<a href="#" class="shortcuts-block__anchor" title="Egresados">
-							<img src="images/shortcuts/shortcut-icon-egresados.png" class="shortcuts-block__icon" alt="Icon Egresados">
+							<img src="<?php echo get_bloginfo('template_directory')?>/images/shortcut-icon-egresados.png" class="shortcuts-block__icon" alt="Icon Egresados">
 							<h2 class="shortcuts-block__title">Egresados</h2>
 							<p class="shortcuts-block__text">Phasellus convallis nisl varius blandit </p>
 						</a>
