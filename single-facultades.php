@@ -2,6 +2,7 @@
 <?php $bg = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID) , 'biggerHead')?>
 
 
+
 <!-- Main Container -->
 			<div id="facultie-container" class="off-canvas-content  main-container" style="min-height: 800px;" data-off-canvas-content>
 			
@@ -149,8 +150,87 @@
 							</ul>
 							<!-- end #facultie-system-tabs -->
 							
+							
 							<!-- System Content -->
-							<div id="facultie-system-content" class="tabs-content" data-tabs-content="facultie-system-tabs" data-interchange="[partials/_facultie/facultie_system_content.html, small]"></div>
+							<div id="facultie-system-content" class="tabs-content" data-tabs-content="facultie-system-tabs">
+								
+								<!-- Panel Minor -->
+								<div id="panel_minor" class="tabs-panel is-active">
+									<div class="row">
+										<?php $degrees = get_posts(array('post_type' => 'carreras' , 'facultad' => $post->post_name , 'nivel' => 'minor', 'numberposts' => -1))?>
+										<?php if($degrees){?>
+										<?php foreach($degrees as $degree):?>
+										<!-- <?php echo $degree->post_title ?> -->
+										<div class="small-12  medium-4  large-3  columns  tabs-panel__block">
+											<a href="<?php echo get_permalink($degree->ID)?>" class="tabs-panel__block-anchor" title="<?php echo $degree->post_title?>">
+												<?php echo get_the_post_thumbnail($degree->ID , 'newsBig' , array('class' => 'tabs-panel__block-image'))?>
+												<h2 class="tabs-panel__block-title"><?php echo $degree->post_title?></h2>
+											</a>
+										</div>
+										<!-- end .tabs-panel__block -->
+										<?php endforeach ?>
+										<?php }else{?>
+											<div class="columns small-12">
+												<h3>No existen programas de estudios para este nivel</h3>
+												<p>Déjanos tus datos para comunicarte cuando existan programas.</p>
+											</div>
+										<?php }?>
+									</div>
+									<!-- end .row -->
+								</div>
+								<!-- end #panel_minor -->
+
+								<!-- Panel Undergraduate -->
+								<div id="panel_undergraduate" class="tabs-panel">
+									<div class="row">
+										<?php $degrees = get_posts(array('post_type' => 'carreras' , 'facultad' => $post->post_name , 'nivel' => 'pregrado', 'numberposts' => -1))?>
+										<?php if($degrees){?>
+										<?php foreach($degrees as $degree):?>
+										<!-- <?php echo $degree->post_title ?> -->
+										<div class="small-12  medium-4  large-3  columns  tabs-panel__block">
+											<a href="<?php echo get_permalink($degree->ID)?>" class="tabs-panel__block-anchor" title="Pedagogía en Educación Básica">
+												<?php echo get_the_post_thumbnail($degree->ID , 'newsBig' , array('class' => 'tabs-panel__block-image'))?>
+												<h2 class="tabs-panel__block-title"><?php echo $degree->post_title?></h2>
+											</a>
+										</div>
+										<!-- end .tabs-panel__block -->
+										<?php endforeach ?>
+										<?php }else{?>
+											<div class="columns small-12">
+												<h3>No existen programas de estudios para este nivel</h3>
+												<p>Déjanos tus datos para comunicarte cuando existan programas.</p>
+											</div>
+										<?php }?>
+									</div>
+								</div>
+								<!-- end #panel_undergraduate -->
+
+								<!-- Panel Postgraduate -->
+								<div id="panel_postgraduate" class="tabs-panel">
+									<div class="row">
+										<?php $degrees = get_posts(array('post_type' => 'carreras' , 'facultad' => $post->post_name , 'nivel' => 'postgrado', 'numberposts' => -1))?>
+										<?php if($degrees){?>
+										<?php foreach($degrees as $degree):?>
+										<!-- <?php echo $degree->post_title ?> -->
+										<div class="small-12  medium-4  large-3  columns  tabs-panel__block">
+											<a href="<?php echo get_permalink($degree->ID)?>" class="tabs-panel__block-anchor" title="Pedagogía en Educación Básica">
+												<?php echo get_the_post_thumbnail($degree->ID , 'newsBig' , array('class' => 'tabs-panel__block-image'))?>
+												<h2 class="tabs-panel__block-title"><?php echo $degree->post_title?></h2>
+											</a>
+										</div>
+										<!-- end .tabs-panel__block -->
+										<?php endforeach ?>
+										<?php }else{?>
+											<div class="columns small-12">
+												<h3>No existen programas de estudios para este nivel</h3>
+												<p>Déjanos tus datos para comunicarte cuando existan programas.</p>
+											</div>
+										<?php }?>
+									</div>
+								</div>
+								<!-- end #panel_postgraduate -->
+								
+							</div>
 							<!-- end #facultie-system-content -->
 						</div>
 					</div>
@@ -158,7 +238,6 @@
 				</section>
 				<!-- end #facultie-system -->
 
-				
 				<!-- Faculties (Facultades) -->
 				<!--<section id="features" class="row" data-interchange="[partials/_home/categories.html, small]"></section>-->
 				<section id="features" class="row">
@@ -271,8 +350,8 @@
 
 				
 				
-				
-
+				<?php $testimonios = get_posts(array('post_type' => 'testimonios' , 'numberposts' => 1 , 'facultad' => $post->post_name))?>
+				<?php if($testimonios){?>
 				<!-- Testimony (Testimonios) -->
 				<section id="facultie-testimony" class="row  row-wide  testimony">
 					<div class="row  testimony-wrapper" data-equalizer="testimony">
@@ -284,21 +363,26 @@
 						
 						<!-- Media -->
 						<div class="small-12  medium-5  large-5  columns  testimony-media" data-equalizer-watch="testimony">
-							<iframe src="https://www.youtube.com/embed/KzH9SaplkAs" allowfullscreen></iframe>
+							<?php if(get_field('videoid' , $testimonios[0])){?>
+								<iframe src="https://www.youtube.com/embed/<?php echo get_field('videoid' , $testimonios[0])?>" allowfullscreen></iframe>
+							<?php }else{ 
+								$test_image = wp_get_attachment_image_src(get_post_thumbnail_id($testimonios[0]) , 'newsBig')?>
+								<img src="<?php echo $test_image[0]?>" alt="">
+							<?php }?>
 						</div>
 						<!-- end .testimony-media -->
 						
 						<!-- Content -->
 						<div class="small-12  medium-7  large-7  columns  testimony-content" data-equalizer-watch="testimony">
-							<h1 class="testimony-content__title">Clemente Moyano<small class="testimony-content__subtitle  catamaran">720 puntos en PSU, Matriculada en Kinesiología. Admisión 2016</small></h1>
+							<h1 class="testimony-content__title"><?php echo $testimonios[0]->post_title?><small class="testimony-content__subtitle  catamaran"><?php echo $testimonios[0]->post_excerpt?></small></h1>
 							<hr class="testimony-content__divider">
-							<p class="testimony-content__text">Me matriculé en <strong>Kinesiología</strong> porque tengo la vocación, me gusta la investigación, la tecnología, saber cómo funciona el cuerpo, los procesos, lo que se puede hacer por el mundo a través de esta ciencia y lo que falta por hacer. Escogí la <strong>Universidad UCINF</strong> porque me gustó su cuerpo docente, su infraestructura (laboratorios) y porque tiene hartos <strong>Campos Clínicos</strong>, características que no encontré en otras universidades”.</p>
+							<p class="testimony-content__text"><?php echo apply_filters('the_content' , $testimonios[0]->post_content)?></p>
 						</div>
 						<!-- end .testominy-content -->
 					</div>
 					<!-- end .row -->
 				</section>
-				
+				<?php }?>
 				
 				
 				
@@ -368,17 +452,4 @@
 				</section>
 				<!-- end #news -->
 			
-
-
-<?php $carreras = get_posts(array('post_type' => 'carreras' , 'facultad' => $post->post_name ))?>
-<?php foreach($carreras as $carrera):?>
-
-
-<li><a href="<?php echo get_permalink($carrera->ID)?>"><?php echo $carrera->post_name?></a></li>
-
-<?php endforeach?>
-
-
-
-
 <?php get_footer()?>

@@ -6,6 +6,7 @@ add_image_size('biggerHead', 1440, 400, true );
 add_image_size('newsBig', 640, 464, true );
 add_image_size('newsSmall', 610, 441, true );
 add_image_size('badgeAcreditacion' , 190, 116 , true );
+add_image_size('individual' , 347, 365 , true );
 }
 /* 
 add_filter('image_size_names_choose', 'my_image_sizes');

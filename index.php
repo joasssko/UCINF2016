@@ -173,7 +173,7 @@
 							<div class="row">
 								<div class="small-12  medium-4  large-4  columns  banners-block__image">
 									<div class="row">
-										<img src="images/banners/banners-image-1.jpg" class="img-full" alt="Banner Acreditación">
+										<img src="<?php echo get_bloginfo('template_directory')?>/images/acreditacion.jpg" class="img-full" alt="Banner Acreditación">
 									</div>
 									<!-- end .row -->
 								</div>
@@ -198,7 +198,7 @@
 							<div class="row">
 								<div class="small-12  medium-4  large-4  columns  banners-block__image">
 									<div class="row">
-										<img src="images/banners/banners-image-2.jpg" class="img-full" alt="Banner La Universidad">
+										<img src="<?php echo get_bloginfo('template_directory')?>/images/la-universidad.jpg" class="img-full" alt="Banner La Universidad">
 									</div>
 									<!-- end .row -->
 								</div>

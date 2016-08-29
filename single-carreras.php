@@ -104,7 +104,7 @@
 						<div class="small-12  medium-6  large-5  columns  career-testimony">
 							<div class="small-12  columns  career-testimony__media">
 								<?php if(get_field('videoid' , $test[0])){?>
-									<iframe src="https://www.youtube.com/embed/KzH9SaplkAs" allowfullscreen></iframe>
+									<iframe src="https://www.youtube.com/embed/<?php echo get_field('videoid' , $test[0])?>" allowfullscreen></iframe>
 								<?php }else{ 
 									$test_image = wp_get_attachment_image_src(get_post_thumbnail_id($test[0]) , 'newsBig')?>
 									<img src="<?php echo $test_image[0]?>" alt="">
