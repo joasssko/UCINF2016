@@ -6,10 +6,89 @@
 				<?php $slides = get_posts(array('post_type' => 'slider'))?>
 				<?php $bgSlide = wp_get_attachment_image_src( get_post_thumbnail_id($slides[0]->ID) , 'biggerHead')?>
 				<!-- Slideshow -->
-				<section id="slideshow" class="row  row-wide">
+				<?php /* <section id="slideshow" class="row  row-wide">
 					<img src="<?php echo $bgSlide[0]?>" class="img-full" alt="Slideshow Banner">
+					<div class="columns show-for-large show-for-medium medium-5 large-4">
+					
+						<?php echo apply_filters('the_content' , $slides[0]->post_content)?>
+						
+					</div>
+				</section> */?>
+				
+				<section id="slideshow" class="row  row-wide  main-heading" style="background:url('<?php echo $bgSlide[0]?>') scroll no-repeat top center #FFFFFF; ">
+					<div class="row">
+						<div class="small-12  medium-8  large-8  columns  main-heading__content">
+							<?php /* <h1 class="main-heading__content-title  open"><?php echo  $slides[0]->post_title ?></h1> */?>
+							<div class="main-heading__content-text">
+								<?php echo apply_filters('the_content' , $slides[0]->post_content)?>							
+							</div>
+						</div>
+						<!-- end .main-heading__content -->
+
+					</div>
+					<!-- end .row -->
 				</section>
+				
+				
+				<style>
+					
+					#slideshow p , #slideshow p > *{
+					font-size: 36px;
+					line-height: 100%;
+					text-shadow: 0 0 6px rgba(0,0,0,0.7);
+					text-transform: uppercase;
+					font-weight: 400;
+					font-family: Montserrat, Open sans, Helvetica, arial, sans-serif !important;
+					}
+					
+				</style>
+				
+				
 				<!-- end #slideshow -->
+				
+				<?php if(get_field('admision_bar' , 'options')){?>
+				
+				<section id="admission-bar" class="row row-wide">
+					<div class="row">
+						<div class="columns large-7 medium-7 small-12">
+							<?php echo apply_filters('the_content' ,  get_field('admision_bar_content' , 'options'))?>
+						</div>
+						<div class="columns large-3 medium-offset-1 medium-3 large-offset-1 small-12">
+							<a href="<?php echo get_page_link(20)?>" class="button  radius  white  admission-bar-block__button" title="Ir a Admisión">Ir a Admisión</a>
+						</div>
+					</div>
+				</section>
+				
+				<style>
+					<?php 
+					
+					$color = get_field('admision_bar_bg_color' , 'options');
+					$img = wp_get_attachment_image_src( get_field('admision_bar_img_bg' , 'options') , 'admissionbar');
+														
+					?>
+					
+					#admission-bar{min-height: 150px;/* background-image: url(<?php echo $img[0]?>);  */background-color: <?php echo $color?>; background-repeat: no-repeat; background-position: top right; }
+					#slideshow{margin-bottom: 0 !important}
+					#admission-bar p{padding-bottom: 0 !important; margin-bottom: 0 !important}
+					#admission-bar{ margin-bottom: 50px}
+					
+					.admission-bar-block__button {
+						font-size: 1.1rem;
+						padding: 0.9375rem 2.5rem 0.75rem;
+						margin-top: 60px;
+					}
+					
+					<?php /* @media (max-width: 1200px) {
+						#admission-bar{ background-image: none !important}
+						.admission-bar-block__button {
+							margin-top: 60px;
+						}
+					} */?>
+
+					
+				</style>
+				
+				<?php }?>
 				
 				<!-- System (Sistema Continuo de estudios) -->
 				<section id="system" class="row">
@@ -20,7 +99,7 @@
 							<div class="small-12  columns  system-heading">
 								<div class="small-12  columns  system-heading__wrapper">
 									<h1 class="system-heading__title">Sistema<br><strong class="montse">contínuo de estudios</strong></h1>
-									<p class="system-heading__text">Universidad UCINF ofrece un sistema contínuo de estudios, en donde puedes obtener distintos grados según el nuvel que estés cursando.</p>
+									<p class="system-heading__text">Universidad UCINF ofrece un sistema contínuo de estudios, en donde puedes obtener distintos grados según el nivel que estés cursando.</p>
 								</div>
 								<!-- end .system-heading__wrapper -->
 							</div>
@@ -32,8 +111,10 @@
 									<div class="row" data-equalizer="system-block-horizontal">
 										<div class="small-12  medium-6  medium-push-6  large-6  large-push-6  columns  system-block__heading" data-equalizer-watch="system-block-horizontal">
 											<div class="row">
-												<a href="#" class="system-block__heading-anchor" title="Ver oferta académica">
-													<img src="<?php echo get_bloginfo('template_directory')?>/images/system-block-image-1.jpg" class="system-block__heading-image  img-full" alt="Imagen Pregrado">
+												<a href="<?php echo get_page_link('87')?>" class="system-block__heading-anchor" title="Ver oferta académica">
+													<?php $img_pregrado = wp_get_attachment_image_src( get_field('mini_imagen' , 87) , 'newsSmall')?>
+													<img src="<?php echo $img_pregrado[0]?>" class="system-block__heading-image  img-full" alt="Imagen pregrado">
+													
 												</a>
 											</div>
 										</div>
@@ -41,7 +122,7 @@
 
 										<div class="small-12  medium-6  medium-pull-6  large-6  large-pull-6  columns  system-block__content" data-equalizer-watch="system-block-horizontal">
 											<h1 class="system-block__title">Pregrado<small class="system-block__subtitle  catamaran">Grado académico universitario</small></h1>
-											<a href="#" class="anchor-link  system-block__anchor" title="Ver oferta académica">Ver oferta académica <i class="fa fa-angle-double-right fa-fw"></i></a>
+											<a href="<?php echo get_page_link('87')?>" class="anchor-link  system-block__anchor" title="Ver oferta académica">Ver oferta académica <i class="fa fa-angle-double-right fa-fw"></i></a>
 										</div>
 										<!-- end .system-block__content -->
 									</div>
@@ -64,8 +145,9 @@
 									<div class="row">
 										<div class="small-12  columns  system-block__heading">
 											<div class="row">
-												<a href="#" class="system-block__heading-anchor" title="Ver programas">
-													<img src="<?php echo get_bloginfo('template_directory')?>/images/system-block-image-2.jpg" class="system-block__heading-image  img-full" alt="Imagen Minor">
+												<a href="<?php echo get_page_link('34')?>" class="system-block__heading-anchor" title="Ver programas">
+													<?php $img_minor = wp_get_attachment_image_src( get_field('mini_imagen' , 34) , 'newsSmall')?>
+													<img src="<?php echo $img_minor[0]?>" class="system-block__heading-image  img-full" alt="Imagen Minor">
 												</a>
 											</div>
 											<!-- end .row -->
@@ -74,7 +156,7 @@
 
 										<div class="small-12  columns  system-block__content" data-equalizer-watch="system-block">
 											<h1 class="system-block__title">Minor<small class="system-block__subtitle  catamaran">Formación Académica Complementaria</small></h1>
-											<a href="#" class="anchor-link  system-block__anchor" title="Ver programas">Ver programas <i class="fa fa-angle-double-right fa-fw"></i></a>
+											<a href="<?php echo get_page_link('34')?>" class="anchor-link  system-block__anchor" title="Ver programas">Ver programas <i class="fa fa-angle-double-right fa-fw"></i></a>
 										</div>
 										<!-- end .system-block__content -->
 									</div>
@@ -90,8 +172,9 @@
 									<div class="row">
 										<div class="small-12  columns  system-block__heading">
 											<div class="row">
-												<a href="#" class="system-block__heading-anchor" title="Ve más allá">
-													<img src="<?php echo get_bloginfo('template_directory')?>/images/system-block-image-3.jpg" class="system-block__heading-image  img-full" alt="Imagen Postgrado">
+												<a href="<?php echo get_page_link('475')?>" class="system-block__heading-anchor" title="Ve más allá">
+													<?php $img_postgrado = wp_get_attachment_image_src( get_field('mini_imagen' , 475) , 'newsSmall')?>
+													<img src="<?php echo $img_postgrado[0]?>" class="system-block__heading-image  img-full" alt="Imagen postgrado">
 												</a>
 											</div>
 											<!-- end .row -->
@@ -100,7 +183,7 @@
 
 										<div class="small-12  columns  system-block__content" data-equalizer-watch="system-block">
 											<h1 class="system-block__title">Postgrado<small class="system-block__subtitle  catamaran">Perfeccionamiento Contínuo</small></h1>
-											<a href="#" class="anchor-link  system-block__anchor" title="Ve más allá">Ve más allá <i class="fa fa-angle-double-right fa-fw"></i></a>
+											<a href="<?php echo get_page_link('475')?>" class="anchor-link  system-block__anchor" title="Ve más allá">Ve más allá <i class="fa fa-angle-double-right fa-fw"></i></a>
 										</div>
 										<!-- end .system-block__content -->
 									</div>
@@ -146,12 +229,15 @@
 										<h1 class="tabs-panel__block-title montse">
 											<small class="tabs-panel__block-subtitle montse">Facultad de</small><?php echo $facultad->post_title ?>
 										</h1>
-										<p class="tabs-panel__block-text">Universidad Ucinf ha trabajado a lo largo de los años, no sólo para dar cumplimiento a su plan estratégico, sino para atender los compromisos adquiridos en los procesos de acreditación institucional anteriores.</p>
+										<p class="tabs-panel__block-text show-for-large"><?php echo $facultad->post_excerpt?></p>
 										<a href="<?php echo get_permalink($facultad->ID)?>" class="tabs-panel__block-anchor  anchor-link" title="Conoce más sobre la facultad">Conoce más sobre la facultad <i class="fa fa-angle-double-right fa-fw"></i></a>
 									</div>
 									<!-- end .tabs-panel__block-wrapper -->
 								</div>
-								<?php echo get_the_post_thumbnail($facultad->ID , 'tabsizeTall' , array('class' => 'tab-panel__image img-full' , 'alt' => $facultad->post_title))?>
+								
+								<?php $img_facultad = wp_get_attachment_image_src( get_field('imagen_tabs_facultad' , $facultad->ID) , 'tabsizeTall')?>
+								<img src="<?php echo $img_facultad[0]?>" class="tab-panel__image img-full" alt="<?php echo $facultad->post_title?>">
+								<?php /* <?php echo get_the_post_thumbnail($facultad->ID , 'tabsizeTall' , array('class' => 'tab-panel__image img-full' , 'alt' => $facultad->post_title))?> */?>
 								
 							</div>
 							<!-- end .tabs-panel -->
@@ -181,8 +267,8 @@
 								
 								<div class="small-12  medium-8  large-8  columns  banners-block__content">
 									<h1 class="banners-block__content-title">Acreditación<span></span></h1>
-									<p class="banners-block__content-text"><strong>Universidad UCINF</strong> Fusce vulputate non nulla at facilisis. Duis ut dapibus enim. Praesent id vestibulum.</p>
-									<a href="#" class="anchor-link  anchor-link--white" title="Leer más sobre el proceso">Leer más sobre el proceso <i class="fa fa-angle-double-right fa-fw"></i></a>
+									<p class="banners-block__content-text"><strong>UCINF</strong> ha trabajado a lo largo de los años para dar cumplimiento a su plan estratégico y los compromisos adquiridos en los procesos anteriores.</p>
+									<a href="<?php echo get_page_link('18')?>" class="anchor-link  anchor-link--white" title="Leer más sobre el proceso">Leer más sobre el proceso <i class="fa fa-angle-double-right fa-fw"></i></a>
 								</div>
 								<!-- end .banners-block__content -->
 							</div>
@@ -206,8 +292,8 @@
 								
 								<div class="small-12  medium-8  large-8  columns  banners-block__content">
 									<h1 class="banners-block__content-title">La Universidad<span></span></h1>
-									<p class="banners-block__content-text"><strong>Universidad UCINF</strong> Fusce vulputate non nulla at facilisis. Duis ut dapibus enim. Praesent id vestibulum.</p>
-									<a href="#" class="anchor-link  anchor-link--white" title="Conoce nuestra universidad">Conoce nuestra universidad <i class="fa fa-angle-double-right fa-fw"></i></a>
+									<p class="banners-block__content-text"><strong>Universidad UCINF</strong> imparte 29 carreras profesionales y técnicas en jornadas diurna y vespertina.</p>
+									<a href="<?php echo get_page_link('8')?>" class="anchor-link  anchor-link--white" title="Conoce nuestra universidad">Conoce nuestra universidad <i class="fa fa-angle-double-right fa-fw"></i></a>
 								</div>
 								<!-- end .banners-block__content -->
 							</div>
@@ -231,7 +317,7 @@
 								<!-- end .benefits-block -->
 
 								<div class="small-12  medium-4  large-5  columns  text-left  medium-text-right  benefits-block" data-equalizer-watch="benefits-block">
-									<a href="#" class="button  radius  white  benefits-block__button" title="Ver los Beneficios">Ver los Beneficios</a>
+									<a href="<?php echo get_page_link('30')?>" class="button  radius  white  benefits-block__button" title="Ver los Beneficios">Ver los Beneficios</a>
 								</div>
 								<!-- end .benefits-block -->
 							</div>
@@ -286,10 +372,10 @@
 										<!-- end .news-block__heading -->
 										
 										<div class="small-12  medium-8  large-8  columns  news-block__content">
-											<div class="row">
+											
 												<h1 class="news-block__content-title"><?php echo $article->post_title ?></h1>
 												<p class="news-block__content-excerpt"><?php echo $article->post_excerpt ?>... <a href="<?php echo get_permalink($article->ID)?>" class="news-block__content-anchor" title="Continuar leyendo">Continuar leyendo</a></p>
-											</div>
+											
 											<!-- end .row -->
 										</div>
 										<!-- end .news-block__content -->
@@ -317,47 +403,47 @@
 					
 					<!-- Block 1 (DAE) -->
 					<div class="small-12  medium-3  large-3  columns  shortcuts-block" data-equalizer-watch="shortcuts">
-						<a href="#" class="shortcuts-block__anchor" title="DAE">
+						<a href="<?php echo get_page_link('28')?>" class="shortcuts-block__anchor" title="DAE">
 							<img src="<?php echo get_bloginfo('template_directory')?>/images/shortcut-icon-dae.png" class="shortcuts-block__icon" alt="Icon DAE">
 							<h2 class="shortcuts-block__title">DAE</h2>
-							<p class="shortcuts-block__text">Phasellus convallis nisl varius blandit </p>
+							<p class="shortcuts-block__text">Información al alumno</p>
 						</a>
 					</div>
 					<!-- end .shortcuts-block -->
 
 					<!-- Block 2 (Alumnos) -->
 					<div class="small-12  medium-3  large-3  columns  shortcuts-block" data-equalizer-watch="shortcuts">
-						<a href="#" class="shortcuts-block__anchor" title="Alumnos">
+						<a href="http://alumno.ucinf.cl/login/index.html" class="shortcuts-block__anchor" title="Alumnos">
 							<img src="<?php echo get_bloginfo('template_directory')?>/images/shortcut-icon-alumnos.png" class="shortcuts-block__icon" alt="Icon Alumnos">
 							<h2 class="shortcuts-block__title">Alumnos</h2>
-							<p class="shortcuts-block__text">Phasellus convallis nisl varius blandit </p>
+							<p class="shortcuts-block__text">Acceso a Intranet</p>
 						</a>
 					</div>
 					<!-- end .shortcuts-block -->
 
 					<!-- Block 3 (Postgrados) -->
 					<div class="small-12  medium-3  large-3  columns  shortcuts-block" data-equalizer-watch="shortcuts">
-						<a href="#" class="shortcuts-block__anchor" title="Postgrados">
+						<a href="<?php echo get_page_link('87')?>" class="shortcuts-block__anchor" title="Postgrados">
 							<img src="<?php echo get_bloginfo('template_directory')?>/images/shortcut-icon-postgrados.png" class="shortcuts-block__icon" alt="Icon Postgrados">
 							<h2 class="shortcuts-block__title">Postgrados</h2>
-							<p class="shortcuts-block__text">Phasellus convallis nisl varius blandit </p>
+							<p class="shortcuts-block__text">Perfeccionamiento Contínuo</p>
 						</a>
 					</div>
 					<!-- end .shortcuts-block -->
 
 					<!-- Block 3 (Egresados) -->
 					<div class="small-12  medium-3  large-3  columns  shortcuts-block" data-equalizer-watch="shortcuts">
-						<a href="#" class="shortcuts-block__anchor" title="Egresados">
+						<a href="<?php echo get_page_link('24')?>" class="shortcuts-block__anchor" title="Egresados">
 							<img src="<?php echo get_bloginfo('template_directory')?>/images/shortcut-icon-egresados.png" class="shortcuts-block__icon" alt="Icon Egresados">
 							<h2 class="shortcuts-block__title">Egresados</h2>
-							<p class="shortcuts-block__text">Phasellus convallis nisl varius blandit </p>
+							<p class="shortcuts-block__text">Portal del exalumno</p>
 						</a>
 					</div>
 					<!-- end .shortcuts-block -->
 				</section>
 				<!-- end #shortcuts -->
 				
-				<!-- Testimony (Trstimonios) -->
+				<?php /* <!-- Testimony (Trstimonios) -->
 				<section id="testimony" class="row  row-wide">
 					<div class="row  testimony-wrapper" data-equalizer="testimony">
 						<!-- Heading -->
@@ -378,13 +464,13 @@
 						<div class="small-12  medium-7  large-7  columns  testimony-content" data-equalizer-watch="testimony">
 							<h1 class="testimony-content__title">Constanza Rojas<small class="testimony-content__subtitle  catamaran">720 puntos en PSU, Matriculada en Kinesiología. Admisión 2016</small></h1>
 							<hr class="testimony-content__divider">
-							<p class="testimony-content__text">Me matriculé en <strong>Kinesiología</strong> porque tengo la vocación, me gusta la investigación, la tecnología, saber cómo funciona el cuerpo, los procesos, lo que se puede hacer por el mundo a través de esta ciencia y lo que falta por hacer. Escogí la <strong>Universidad UCINF</strong> porque me gustó su cuerpo docente, su infraestructura (laboratorios) y porque tiene hartos <strong>Campos Clínicos</strong>, características que no encontré en otras universidades”.</p>
+							<p class="testimony-content__text">Me matriculé en <strong>Fonoaudiología</strong> porque tengo la vocación, me gusta la investigación, la tecnología, saber cómo funciona el cuerpo, los procesos, lo que se puede hacer por el mundo a través de esta ciencia y lo que falta por hacer. Escogí la <strong>Universidad UCINF</strong> porque me gustó su cuerpo docente, su infraestructura (laboratorios) y porque tiene hartos <strong>Campos Clínicos</strong>, características que no encontré en otras universidades”.</p>
 						</div>
 						<!-- end .testominy-content -->
 					</div>
 					<!-- end .row -->
 				</section>
-				<!-- end #testimony -->
+				<!-- end #testimony --> */?>
 			</div>
 			<!-- end .main-container -->
 

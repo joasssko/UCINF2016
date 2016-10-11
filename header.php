@@ -34,6 +34,8 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	
+	<link rel="shortcut icon" href="<?php echo get_bloginfo('template_directory')?>/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?php echo get_bloginfo('template_directory')?>/favicon.ico" type="image/x-icon">
 	
 	<!-- Slick Slider Files -->
 	<!--<link rel="stylesheet" type="text/css" href="plugins/slick-slider/slick.css">
@@ -56,7 +58,7 @@
 			<!--<header data-interchange="[partials/mobile-nav.html, small], [partials/mobile-nav.html, medium], [partials/main-nav.html, large]"></header>-->
 			<header data-sticky-container>
 				<!-- Header Top -->
-				<div id="header-top" class="row">
+				<div id="header-top" class="row show-for-large">
 					<div class="small-12  medium-6  large-6  columns  text-left  header-top__left">
 						
 						<?php wp_nav_menu(array('theme_location'  => 'top-menu', 'menu_class' => 'menu simple header-top__menu' , 'container' => 'none')) ?>
@@ -71,7 +73,7 @@
 								<a href="https://goo.gl/maps/kUKHAsBe8XD2" class="header-top__menu-anchor" title="Visítanos" target="_blank">Pedro de Valdivia #450</a>
 							</li>
 							<li class="header-top__menu-item  header-top__menu-item--last">
-								<a href="#" class="header-top__menu-button" title="Contáctanos">Contáctanos</a>
+								<a href="#" class="header-top__menu-button" title="Contáctanos" id="contactTop">Contáctanos</a>
 							</li>
 						</ul>
 					</div>
@@ -86,7 +88,7 @@
 						<div class="top-bar-left">
 							<ul class="menu  main-nav__logo">
 								<li class="main-nav__logo-container">
-									<a href="/" class="main-nav__logo-anchor" title="Ir al Inicio">
+									<a href="<?php echo get_bloginfo('url')?>" class="main-nav__logo-anchor" title="Ir al Inicio">
 										<img src="<?php echo get_bloginfo('template_directory')?>/images/logos/logo-ucinf.png" class="main-nav__logo-object" alt="Logo UCINF">
 									</a>
 								</li>
@@ -132,10 +134,11 @@
 						<!-- end .top-bar-right -->
 						
 						<!-- Main Links -->
-						<div class="top-bar-right">
+						<div class="top-bar-right" data-dropdown-menu>
 							
 							
-							<?php wp_nav_menu(array('theme_location'  => 'primary' , 'menu_id' => 'mainmenu' ,'menu_class' => 'dropdown menu  main-nav__menu' , 'container' => 'none')) ?>
+							<?php wp_nav_menu(array('theme_location'  => 'primary' , 'menu_id' => 'mainmenu' ,'menu_class' => 'dropdown menu  main-nav__menu' , 'container' => 'none', 'fallback_cb' => 'f6_topbar_menu_fallback',
+            'walker' => new F6_TOPBAR_MENU_WALKER()))	 ?>
 							
 							<?php /* 
 							<ul class="dropdown  menu  main-nav__menu" data-dropdown-menu>
@@ -192,8 +195,8 @@
 				<!-- Mobile Nav (Medium & Small devices navigation) -->
 				<div id="mobile-nav" class="title-bar  hide-for-large">
 					<div class="mobile-nav__center">
-						<a href="index.html" class="mobile-nav__center-anchor">
-							<img src="images/logos/logo-ucinf.png" class="mobile-nav__center-logo" alt="Logo UCINF">
+						<a href="<?php echo get_bloginfo('url')?>" class="mobile-nav__center-anchor">
+							<img src="<?php echo get_bloginfo('template_directory')?>/images/logos/logo-ucinf.png" class="mobile-nav__center-logo" alt="Logo UCINF">
 						</a>
 					</div>
 					<!-- end .mobile-nav__center -->
@@ -208,21 +211,163 @@
 			</header>
 			<!-- end Header -->
 
-			<!-- Sidebar Menu -->
-			<div id="sidebar-menu" class="off-canvas  position-left  show-for-medium-down" data-off-canvas>
-				<!-- Close button -->
-				<button class="close-button" aria-label="Close menu" type="button" data-close>
-					<span aria-hidden="true">&times;</span>
-				</button>
-
+			<!-- Sidebar Nav -->
+			<div id="sidebar-nav" class="off-canvas  position-right  hide-for-large" data-off-canvas data-position="right">
 				<!-- Menu -->
-				<ul class="vertical menu">
-					<li><a href="#">Foundation</a></li>
-					<li><a href="#">Dot</a></li>
-					<li><a href="#">ZURB</a></li>
-					<li><a href="#">Com</a></li>
-					<li><a href="#">Slash</a></li>
-					<li><a href="#">Sites</a></li>
-				</ul>
+				
+				<?php wp_nav_menu(array('theme_location'  => 'mobile' , 'menu_id' => 'mobilemenu' ,'menu_class' => 'menu  vertical  sidebar-nav__menu' , 'container' => 'none', 'items_wrap'      => '<ul id="%1$s" class="%2$s" data-drilldown="">%3$s</ul>', 'fallback_cb' => 'f6_drill_menu_fallback', 
+            'walker' => new F6_DRILL_MENU_WALKER()))	 ?>
+				
+				
+				<?php /* <ul class="menu  vertical  sidebar-nav__menu" data-drilldown>
+					<li class="sidebar-nav__menu-title">
+						<a class="sidebar-nav__menu-item-anchor">
+							<i class="fa fa-user fa-fw"></i> Acceso <i class="fa fa-angle-right fa-fw"></i>
+						</a>
+
+						<ul class="vertical  menu  sidebar-nav__submenu">
+							<li class="sidebar-nav__submenu-title"><i class="fa fa-user fa-fw"></i> Acceso</li>
+
+							<li class="sidebar-nav__submenu-item">
+								<a href="#" class="sidebar-nav__submenu-item-anchor" title="Alumnos"><i class="fa fa-caret-right fa-fw"></i> Alumnos</a>
+							</li>
+							<!-- end .sidebar-nav__submenu-item-anchor -->
+
+							<li class="sidebar-nav__submenu-item">
+								<a href="#" class="sidebar-nav__submenu-item-anchor" title="Docentes"><i class="fa fa-caret-right fa-fw"></i> Docentes</a>
+							</li>
+							<!-- end .sidebar-nav__submenu-item-anchor -->
+
+							<li class="sidebar-nav__submenu-item">
+								<a href="#" class="sidebar-nav__submenu-item-anchor" title="Egresados"><i class="fa fa-caret-right fa-fw"></i> Egresados</a>
+							</li>
+							<!-- end .sidebar-nav__submenu-item-anchor -->
+						</ul>
+						<!-- end .sidebar-mav__submenu -->
+					</li>
+					<!-- end .sidebar-nav__menu-title -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor" title="Universidad">Universidad</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a class="sidebar-nav__menu-item-anchor">Facultades <i class="fa fa-angle-right fa-fw"></i></a>
+
+						<ul class="vertical  menu  sidebar-nav__submenu">
+							<li class="sidebar-nav__submenu-title">Facultades</li>
+
+							<li class="sidebar-nav__submenu-item">
+								<a href="#" class="sidebar-nav__submenu-item-anchor" title="Educación">Educación</a>
+							</li>
+							<!-- end .sidebar-nav__submenu-item-anchor -->
+							<li class="sidebar-nav__submenu-item">
+								<a href="#" class="sidebar-nav__submenu-item-anchor" title="Ciencias de la Salud">Ciencias de la Salud</a>
+							</li>
+							<!-- end .sidebar-nav__submenu-item-anchor -->
+							<li class="sidebar-nav__submenu-item">
+								<a href="#" class="sidebar-nav__submenu-item-anchor" title="Ciencias Sociales y Jurídicas">Ciencias Sociales y Jurídicas</a>
+							</li>
+							<!-- end .sidebar-nav__submenu-item-anchor -->
+							<li class="sidebar-nav__submenu-item">
+								<a href="#" class="sidebar-nav__submenu-item-anchor" title="Ingeniería y Negocios">Ingeniería y Negocios</a>
+							</li>
+							<!-- end .sidebar-nav__submenu-item-anchor -->
+
+							<li class="sidebar-nav__submenu-actions">
+								<a href="{{ item.url }}" class="button  tiny  white  sidebar-nav__submenu-actions-button" title="Ver Facultades">Ver Facultades</a>
+							</li>
+							<!-- end .sidebar-nav__submenu-actions -->
+						</ul>
+						<!-- end .sidebar-nav__submenu -->
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor" title="Admisión">Admisión</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor" title="Postgrados">Postgrados</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor" title="Egresados">Egresados</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-divider"><span class="sidebar-nav__menu-divider-object"></span></li>
+					<!-- end .sidebar-nav__menu-divider -->
+					
+					<!-- Facebook -->
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="UCINF en Facebook"><i class="fa fa-facebook fa-fw"></i> Encuentranos en Facebook</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<!-- Twitter -->
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="UCINF en Twitter"><i class="fa fa-twitter fa-fw"></i> Encuentranos en Twitter</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<!-- Youtube -->
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="UCINF en Youtube"><i class="fa fa-youtube fa-fw"></i> Encuentranos en Youtube</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-divider"><span class="sidebar-nav__menu-divider-object"></span></li>
+					<!-- end .sidebar-nav__menu-divider -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="Validad Certificado">Validad Certificado</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="Formas de Pago">Formas de Pago</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="Newsletter">Newsletter</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="Sitio Alumno">Sitio Alumno</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="CAPA">CAPA</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="Intranet">Intranet</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="Biblioteca">Biblioteca</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="Manuales de Empleabilidad">Manuales de Empleabilidad</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+
+					<li class="sidebar-nav__menu-item">
+						<a href="#" class="sidebar-nav__menu-item-anchor  sidebar-nav__menu-item-anchor--lowercase" title="Dirección de Asuntos Estudiantiles (DAE)">Dirección de Asuntos Estudiantiles (DAE)</a>
+					</li>
+					<!-- end .sidebar-nav__menu-item -->
+				</ul> */?>
+				<!-- end .sidebar-nav__menu -->
 			</div>
-			<!-- end #sibebar-menu -->
+			<!-- end #sibebar-nav -->

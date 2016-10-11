@@ -72,7 +72,12 @@
 						<div class="small-12  medium-6  large-3  columns  card-block">
 							<a href="<?php echo get_permalink($modulo->ID)?>" class="card-block__anchor" title="<?php echo $modulo->post_title?>">
 								<?php $mod_img = wp_get_attachment_image_src( get_post_thumbnail_id($modulo->ID) , 'newsSmall')?>
-								<img src="<?php echo $mod_img[0]?>" class="card-block__image" alt="<?php echo $modulo->post_title?>">
+								<?php if(get_field( 'mini_imagen' , $modulo->ID)){?>
+									<?php $bg = wp_get_attachment_image_src( get_field( 'mini_imagen' , $modulo->ID) , 'newsBig')?>
+									<img src="<?php echo $bg[0]?>" alt="" class="tabs-panel__block-image">
+								<?php }else{?>
+									<?php echo get_the_post_thumbnail($modulo->ID , 'newsBig' , array('class' => 'tabs-panel__block-image'))?>
+								<?php }?>
 								<h2 class="card-block__title"><?php echo $modulo->post_title?></h2>
 							</a>
 						</div>
@@ -82,6 +87,7 @@
 					</div>
 				</section>
 				<!-- end .cards-container -->
+				
 				
 				<!-- Banners (Acreditación y La Universidad) -->
 				<section id="banners" class="row  banners-container">

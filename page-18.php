@@ -36,8 +36,8 @@
 
 						<div class="small-12  medium-12  large-4  columns  page-intro__content" data-equalizer-watch="page-intro">
 							<div class="small-12  columns  page-intro__content-wrapper">
-								<h2 class="page-intro__content-title  open"><i>Proceso de acreditación</i></h2>
-								<p><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec ullamcorper erat. Donec elit diam, placerat vitae est ac, porta eleifend erat. Donec blandit porta eros, eget accumsan tellus ullamcorper et. Sed nisi massa, auctor finibus lectus vitae, varius accumsan enim. Donec rhoncus ex id justo porttitor, ut hendrerit purus pretium. Integer a magna ac lectus ullamcorper.</i></p>
+								<h2 class="page-intro__content-title  open"><i><?php echo get_field('titulo_caja_destacada')?></i></h2>
+								<p><i><?php echo get_field('caja_destacada')?></i></p>
 							</div>
 						</div>
 						
@@ -47,12 +47,137 @@
 				<!-- end .page-intro -->
 				
 				
+				
+				<?php if(get_field('modulos')){?>
+				<?php $modulos = get_field('modulos')?>
+				
+				<section id="modules" class="row page-intro">
+					
+					<?php foreach($modulos as $modulo):?>
+						
+						<?php if($modulo['acf_fc_layout'] == 'text_block'){?>
+							
+							<?php if($modulo["columnas"] == '1'){?>
+								
+								<div class="small-12 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
+								</div>
+								<div class="clear separator border"></div>
+							<?php }elseif($modulo['columnas'] == '2'){?>
+								
+								<div class="medium-6 small-12 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
+								</div>
+								<div class="medium-6 small-12 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_2'])?>
+								</div>
+								<div class="clear separator border"></div>
+							<?php }elseif($modulo['columnas'] == '3'){?>
+								
+								<div class="small-4 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
+								</div>
+								<div class="small-4 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_2'])?>
+								</div>
+								<div class="small-4 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_3'])?>
+								</div>
+								
+							<?php }elseif($modulo['columnas'] == '1-2'){?>
+								
+								<div class="small-4 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
+								</div>
+								<div class="small-8 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_2'])?>
+								</div>
+								<div class="clear separator border"></div>
+							<?php }elseif($modulo['columnas'] == '2-1'){?>
+								
+								<div class="small-8 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
+								</div>
+								<div class="small-4 columns">
+									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_2'])?>
+								</div>
+								<div class="clear separator border"></div>
+							<?php }?>
+								
+						<?php }elseif( $modulo['acf_fc_layout'] == 'acordeon'){?>
+							
+							<div class="small-12 medium-10 medium-offset-1 columns">
+								
+								<ul class="accordion" data-accordion>
+									<?php foreach($modulo['acordeones'] as $acordeon):?>
+									  <li class="accordion-item " data-accordion-item>
+										<a href="#" class="accordion-title"><?php echo $acordeon['titulo']?></a>
+										<div class="accordion-content" data-tab-content>
+										  <?php echo apply_filters('the_content', $acordeon['descripcion'])?>
+										</div>
+									  </li>
+									<?php endforeach?>							  
+								</ul>
+								
+							</div>
+							<div class="clear"></div>
+						<?php }elseif( $modulo['acf_fc_layout'] == 'pestanas'){?>
+								
+								<div class="pestanas">
+							
+									<div class="small-3  columns">
+										<ul id="about-tabs" class="tabs vertical" data-tabs>
+
+											<?php $pcounter = 0?>
+											<?php foreach($modulo['tabs'] as $pestana):?>
+												<?php $pcounter++ ?>
+												<li class="tabs-title <?php echo $pcounter == 1 ? 'is-active' : '';?>"><a href="#panel_<?php echo $pcounter?>"><?php echo $pestana['titulo']?> <i class="fa fa-angle-right fa-fw trsn"></i></a></li>
+											<?php endforeach?>
+
+										</ul>
+
+									</div>
+
+
+									<div class="small-9  columns">
+										<div id="about-tabs-content" class="tabs-content vertical" data-tabs-content="about-tabs">
+
+											<?php $ppcounter = 0?>
+											<?php foreach($modulo['tabs'] as $pestana):?>
+											<?php $ppcounter++ ?>
+											<!-- Panel Mission (Misión) -->
+											<div id="panel_<?php echo $ppcounter?>" class="tabs-panel <?php echo $ppcounter == 1 ? 'is-active' : '';?>">
+												<h1 class="tabs-panel__title"><?php echo $pestana['titulo']?></h1>
+												<div class="tabs-panel__content">
+													<?php echo apply_filters('the_content' , $pestana['descripcion'])?>
+												</div>
+												<!-- end .tabs-panel__content -->
+											</div>
+											<!-- end #panel_mission -->
+											<?php endforeach?>
+
+										</div>
+										<!-- end #about-tabs-content -->
+									</div>
+									<div class="clear"></div>
+									
+									
+								</div>
+								
+								
+						<?php }?>
+						
+					<?php endforeach;?>
+					
+				</section>
+				<?php }?>
+				
 				<!-- Cards (Carreras Acreditadas) -->
 				<section id="accredited-courses" class="row  row-wide">
 					<div class="row">
 						<div class="small-12  columns  text-center  page-heading">
 							<h1 class="page-heading__title">Carreras Acreditadas</h1>
-							<p class="page-heading__text">La Universidad UCINF imparte 29 carreras de pregrado – jornadas diurna y vespertina, a través de sus siete Facultades: Ingeniería; Derecho y Administración; Educación; Ciencias de la Salud; y Ciencias Humanas de las cuales siete de ellas se encuentran acreditadas.</p>
+							<p class="page-heading__text">La Universidad UCINF imparte 29 carreras de pregrado – jornadas diurna y vespertina, a través de sus cuatro Facultades: Ingeniería y negocios, Ciencias sociales y jurídicas, Educación y Ciencias de la Salud, de las cuales siete de ellas se encuentran acreditadas.</p>
 						</div>
 					</div>
 					<!-- end .row -->
@@ -64,10 +189,10 @@
 						
 						<?php if(get_field('periodo_de_acreditacion' , $degree->ID)){?>
 						<!-- Block -->
-						<div class="small-12  medium-6  large-3  columns  card-block">
+						<div class="small-12  medium-6  large-3  columns  card-block end">
 							<div class="card-block__wrapper  card-block__wrapper--bordered">
 								<?php $badge = wp_get_attachment_image_src(get_field('etiqueta_acreditacion' , $degree->ID) , 'badgeAcreditacion')?>
-								<a href="<?php echo get_permalink($degree->ID)?>"><img src="<?php echo $badge[0]?>" class="card-block__image" alt="<?php echo $degree->post_title?>"></a>
+								<a href="<?php echo get_permalink($degree->ID)?>"><img src="<?php echo $badge[0]?>" class="card-block__image" alt="<?php echo $degree->post_title?>" style="margin:10px auto"></a>
 								<h2 class="card-block__title">Carrera Acreditada <?php echo get_field('periodo_de_acreditacion' , $degree->ID)?> años</h2>
 								<a href="<?php echo get_field('acuerdo_de_acreditacion' , $degree->ID)?>"><small><i class="fa fa-download"></i> Acuerdo Acreditación</small></a>
 							</div>
@@ -91,15 +216,26 @@
 					<!-- end .row -->
 
 					<div class="row  faq-container" data-equalizer="faq" data-equalize-by-row="true">
-					
-						<?php $faqs = get_field('preguntas_frecuentes')?>
-						<?php foreach($faqs as $question):?>
-						<div class="small-12  medium-6  large-4  columns  faq-block" data-equalizer-watch="faq">
-							<h1 class="faq-block__title  open"><?php echo $question['pregunta']?></h1>
-							<p class="faq-block__text"><?php echo $question['respuesta']?></p>
+						
+						
+						<div class="small-12 medium-10 medium-offset-1 columns">
+								
+							<ul class="accordion" data-accordion>
+								<?php $faqs = get_field('preguntas_frecuentes')?>
+								<?php foreach($faqs as $question):?>
+								  <li class="accordion-item " data-accordion-item>
+									<a href="#" class="accordion-title"><?php echo $question['pregunta']?></a>
+									<div class="accordion-content" data-tab-content>
+									  <?php echo apply_filters('the_content', $question['respuesta'])?>
+									</div>
+								  </li>
+								<?php endforeach?>							  
+							</ul>
+
 						</div>
-						<?php endforeach?>
-						<!-- end .faq-block -->
+						<div class="clear"></div>
+						
+						
 
 						
 					</div>

@@ -57,16 +57,15 @@
 							<!-- System Tabs -->
 							<ul id="facultie-system-tabs" class="tabs" data-tabs>
 								
-								<li class="tabs-title is-active">
+								<li class="tabs-title">
 									<a href="#panel_undergraduate">Pregrado<small>Grado Académico Universitario</small></a>
 								</li>
-								<li class="tabs-title">
+								<li class="tabs-title is-active">
 									<a href="#panel_minor" aria-selected="true">Minor<small>Formación Académica Complementaria</small></a>
 								</li>
 								<li class="tabs-title">
 									<a href="#panel_postgraduate">Postgrado<small>Perfeccionamiento Contínuo</small></a>
 								</li>
-								
 							</ul>
 							<!-- end #facultie-system-tabs -->
 							
@@ -75,7 +74,7 @@
 							<div id="facultie-system-content" class="tabs-content" data-tabs-content="facultie-system-tabs">
 								
 								<!-- Panel Minor -->
-								<div id="panel_minor" class="tabs-panel">
+								<div id="panel_minor" class="tabs-panel is-active">
 									<div class="row">
 										<?php $degrees = get_posts(array('post_type' => 'carreras' , 'nivel' => 'minor', 'numberposts' => -1))?>
 										<?php if($degrees){?>
@@ -106,7 +105,7 @@
 								<!-- end #panel_minor -->
 
 								<!-- Panel Undergraduate -->
-								<div id="panel_undergraduate" class="tabs-panel is-active">
+								<div id="panel_undergraduate" class="tabs-panel">
 									<div class="row">
 										
 										<?php $degrees = get_posts(array('post_type' => 'carreras' , 'facultad' => 'educacion' , 'nivel' => 'pregrado', 'numberposts' => -1))?>

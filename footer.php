@@ -8,9 +8,16 @@
 		<img src="<?php echo get_bloginfo('template_directory')?>/images/logos/footer-main-logo.png" class="footer-block__logo" alt="Logo UCINF">
 	</div>
 	<!-- end .footer-block -->
-
+	
+	
+	<?php  dynamic_sidebar('footer-1')?>
+	<?php  dynamic_sidebar('footer-2')?>
+	<?php  dynamic_sidebar('footer-3')?>
+	
+	
+	<?php /* 
 	<!-- Block 1 (La Universidad) -->
-	<div class="small-12  medium-3  large-3  columns  footer-block">
+	<div class="small-12  medium-3  large-3 large-offset-1  columns  footer-block">
 		<ul class="menu  vertical  footer-block__menu">
 			<li class="menu-text  footer-block__menu-title">La Universidad<small class="footer-block__menu-subtitle">Curabitur eget enim posuere</small></li>
 			<li class="footer-block__menu-item">
@@ -71,7 +78,7 @@
 			</li>
 		</ul>
 	</div>
-	<!-- end .footer-block -->
+	<!-- end .footer-block --> */?>
 </div>
 <!-- end .footer-top -->
 
@@ -177,6 +184,56 @@
 			$("#main-nav").removeClass("scrolling");
 		}
 	});
+									
+//jQuery(document).ready(function(){
+	<?php if(is_singular('facultades')){?>
+	
+	facultad = '<?php echo $post->post_name?>';
+	facultadID = '<?php echo $post->ID?>'
+	$('[data-tabs]').on('change.zf.tabs', function() {
+		console.log(facultad);
+	  	if($('#panel_docentes:visible').length){
+			
+			$.ajax({
+		
+				type:'GET',
+				url:"<?php echo get_bloginfo('url')?>/wp-admin/admin-ajax.php",
+				dataType:"text",
+				data:({ action : 'llamaDocentes' , facultad : facultad , facultadID :  facultadID }),
+				success : function(data){
+					console.log(data);
+					
+					jQuery('#contieneDocentes').html(data)	
+
+				},
+				error : function(data){
+					console.log('snap! no se pudo realizar la consulta');
+					return false;
+				}	
+			});
+			
+		}
+
+	});
+	
+//})
+	<?php }?>
+	
+<?php if(get_field('custom_js' , 'options')){
+	echo get_field('custom_js' , 'options');
+}?>
 	
 </script>
+
+<?php if(get_field('custom_css' , 'options')){ ?>
+<style>
+	<?php echo get_field('custom_css' , 'options');?>
+</style>
+<?php } ?>
+
+
+<?php if(get_field('custom_html' , 'options')){
+	echo get_field('custom_html' , 'options');
+} ?>
+
 </html>

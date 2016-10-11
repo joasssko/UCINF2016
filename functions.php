@@ -5,8 +5,9 @@ add_image_size('tabsizeHalf', 1280, 450, true );
 add_image_size('biggerHead', 1440, 400, true );
 add_image_size('newsBig', 640, 464, true );
 add_image_size('newsSmall', 610, 441, true );
-add_image_size('badgeAcreditacion' , 190, 116 , true );
+add_image_size('badgeAcreditacion' , 242, 149 , true );
 add_image_size('individual' , 347, 365 , true );
+add_image_size('admissionbar' , 1920, 300 , array( 'center', 'top' ) );
 }
 /* 
 add_filter('image_size_names_choose', 'my_image_sizes');
@@ -18,6 +19,42 @@ add_filter('image_size_names_choose', 'my_image_sizes');
 	return $newsizes;
 }
 */
+
+//Register Sidebars
+
+register_sidebar( array(
+        'name' => 'Menu Footer 1',
+        'id' => 'footer-1',
+        'description' => 'Footer menú columna 1',
+        'before_widget' => '<div class="small-12 show-for-large show-for-medium  medium-3  large-3  columns  text-center  medium-text-left  footer-block"><ul id="%1$s" class="widget menu  vertical  footer-block__menu %2$s">',
+		'after_widget'  => '</ul></div>',
+		'before_title'  => '<li class="menu-text  footer-block__menu-title">',
+		'after_title'   => '</li>',
+	)
+);
+
+register_sidebar( array(
+        'name' => 'Menu Footer 2',
+        'id' => 'footer-2',
+        'description' => 'Footer menú columna 2',
+        'before_widget' => '<div class="small-12 show-for-large show-for-medium  medium-3  large-3  columns  text-center  medium-text-left  footer-block"><ul id="%1$s" class="widget menu  vertical  footer-block__menu %2$s">',
+		'after_widget'  => '</ul></div>',
+		'before_title'  => '<li class="menu-text  footer-block__menu-title">',
+		'after_title'   => '</li>',
+	)
+);
+
+register_sidebar( array(
+        'name' => 'Menu Footer 3',
+        'id' => 'footer-3',
+        'description' => 'Footer menú columna 3',
+        'before_widget' => '<div class="small-12 show-for-large show-for-medium  medium-3  large-3  columns  text-center  medium-text-left  footer-block"><ul id="%1$s" class="widget menu  vertical  footer-block__menu %2$s">',
+		'after_widget'  => '</ul></div>',
+		'before_title'  => '<li class="menu-text  footer-block__menu-title">',
+		'after_title'   => '</li>',
+	)
+);
+
 add_post_type_support('page', 'excerpt');
 ;?>
 <?php 
@@ -32,7 +69,7 @@ function register_my_menu() {
 	register_nav_menu( 'side-menu', 'Menú lateral');
 	register_nav_menu( 'top-menu', 'Menú Superior');
 	register_nav_menu( 'footer', 'Menú Footer');
-//	register_nav_menu( 'third', 'Menú interiores');
+	register_nav_menu( 'mobile', 'Menú mobile');
 }
 add_action( 'init', 'register_my_menu' );
 ?>
@@ -253,71 +290,45 @@ function validaLetras($texto){
 }
 
 
+add_action('wp_ajax_llamaDocentes', 'llamaDocentes');
+add_action('wp_ajax_nopriv_llamaDocentes', 'llamaDocentes');
+function llamaDocentes(){
+	
+	$facultad = $_GET['facultad'];
+	$facultadID = $_GET['facultadID'];
+	
+	$docentes = get_field('docentes' , $facultadID);
+	
+	$docentes = get_posts(array('post_type' => 'docentes' , 'post__in' => $docentes , 'numberposts' => -1));
+	?>
+	<?php foreach($docentes as $docente):?>
+	
+	<div class="small-12  medium-6  large-6  columns  person-block">
+		<div class="row">
+			<div class="small-12  medium-5  large-4  columns person-block__heading">
+				<?php if(has_post_thumbnail($docente->ID)){?>
+				<?php echo get_the_post_thumbnail($docente->ID , 'thumbnail' , array('class' => 'person-block__heading-image' , 'alt' => $docente->post_title))?>
+				<?php }else{?>
+					<img src="<?php echo get_bloginfo('url')?>/wp-content/uploads/2016/08/avatar-460x460.jpg" class="person-block__heading-image" alt="<?php $docente->post_title?>">
+				<?php }?>
+			</div>
+			
 
-add_action('wp_ajax_enviarPregunta', 'enviarPregunta');
-add_action('wp_ajax_nopriv_enviarPregunta', 'enviarPregunta');
-function enviarPregunta(){
-	
-	$nombre = $_GET['nombre'];
-	$edad = $_GET['edad'];
-	$email = $_GET['email'];
-	$ciudad = $_GET['ciudad'];
-	$pregunta = $_GET['pregunta'];
-	
-	$error = 0;
-	if(validaLetras($nombre) != $nombre){
-		$error = 1;
-	}
-	
-	if (!preg_match('/^[A-Za-z0-9-_.+%]+@[A-Za-z0-9-.]+\.[A-Za-z]{2,4}$/', $email)) {
-		$error = 1;
-	} 
-	
-	if($error == 0){
-		$nuevaPregunta = array(
-		  'post_title'    => substr($pregunta , 0 , 100 ),
-		  'post_content'  => 'El doctor debe ingresar la respuesta acá',
-		  'post_status'   => 'draft',
-		  'post_type'	  => 'alo-doctor',
-		  'post_excerpt'  => $pregunta,
-		);
+			<div class="small-12  medium-7  large-8  columns  person-block__info">
+				<h1 class="person-block__info-name"><?php echo $docente->post_title ?></h1>
+				<p class="person-block__info-text"><?php echo get_field('titulo' , $docente->ID)?> - <?php echo get_field('estudios' , $docente->ID)?></p>
+				<?php if(get_field('email' , $docente->ID)){?>
+				<a href="<?php echo 'mailto:'.get_field('email' , $docente->ID)?>" class="person-block__info-email" title="<?php echo $docente->post_title ?>"><i class="fa fa-envelope-o fa-fw"></i> <?php echo get_field('email' , $docente->ID)?></a>
+				<?php }?>
+			</div>
+			
+		</div>
 		
-		$askId = wp_insert_post( $nuevaPregunta , $cueck );
-		
-		if($cueck){
-			echo '3';
-		}else{
-			//var_dump($askId);
-			echo '4';
-			update_post_meta($askId , 'nombre' , $nombre);
-			update_post_meta($askId , 'email' , $email);
-			update_post_meta($askId , 'edad' , $edad);
-			update_post_meta($askId , 'ciudad' , $ciudad);
-		}
-	}else{
-		echo '5';
-	}
-	die;
-}
-
-add_action('wp_ajax_cargarPregunta', 'cargarPregunta');
-add_action('wp_ajax_nopriv_cargarPregunta', 'cargarPregunta');
-function cargarPregunta(){
-	
-	$id = $_GET['id'];
-	if($id){
-		$p = get_post($id);
-		//var_dump($p);
-		$nombre = get_post_meta($id , 'nombre', true);
-		$email = get_post_meta($id , 'email', true);
-		$edad = get_post_meta($id , 'edad', true);
-		$ciudad = get_post_meta($id , 'ciudad', true);
-		
-		echo '"'.$p->post_title.'";"'.$p->post_content.'";"'.$nombre.'";"'.$edad;
-		
-	}
+	</div>
 	
 	
+	<?php endforeach?>
+	<?php 
 	die;
 }
 
@@ -330,18 +341,59 @@ function limit_preguntas($query) {
 add_action('pre_get_posts','limit_preguntas');
 
 ?>
-<?php 
-add_filter('upload_mimes', 'custom_upload_mimes');
-function custom_upload_mimes ( $existing_mimes=array() ) {
- 
-	// Add file extension 'extension' with mime type 'mime/type'
-	$existing_mimes['kml'] = 'application/vnd.google-earth.kml+xml';
-	$existing_mimes['kmz'] = 'application/x-kmap';
- 
-	// and return the new full result
-	return $existing_mimes;
- 
+<?php
+class F6_TOPBAR_MENU_WALKER extends Walker_Nav_Menu
+{   
+    /*
+     * Add vertical menu class and submenu data attribute to sub menus
+     */
+     
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n$indent<ul class=\"vertical menu\" data-submenu>\n";
+    }
 }
+
+//Optional fallback
+function f6_topbar_menu_fallback($args)
+{
+    /*
+     * Instantiate new Page Walker class instead of applying a filter to the
+     * "wp_page_menu" function in the event there are multiple active menus in theme.
+     */
+     
+    $walker_page = new Walker_Page();
+    $fallback = $walker_page->walk(get_pages(), 0);
+    $fallback = str_replace("<ul class='children'>", '<ul class="children submenu menu vertical" data-submenu>', $fallback);
+    
+    echo '<ul class="dropdown menu data-dropdown-menu">'.$fallback.'</ul>';
+}
+
+class F6_DRILL_MENU_WALKER extends Walker_Nav_Menu
+{
+    /*
+     * Add vertical menu class
+     */
+     
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n$indent<ul class=\"vertical menu\" >\n";
+    }
+}
+ 
+function f6_drill_menu_fallback($args)
+{
+    /*
+     * Instantiate new Page Walker class instead of applying a filter to the
+     * "wp_page_menu" function in the event there are multiple active menus in theme.
+     */
+     
+    $walker_page = new Walker_Page();
+    $fallback = $walker_page->walk(get_pages(), 0);
+    $fallback = str_replace("children", "children vertical menu", $fallback);
+    echo '<ul class="vertical menu" data-drilldown="">'.$fallback.'</ul>';
+}
+
 ?>
 <?php 
 function SuperAdmin() {

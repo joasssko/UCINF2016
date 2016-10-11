@@ -27,7 +27,7 @@
 						
 						<?php $tabs = get_field('tabs')?>
 						
-						<div class="small-3  columns">
+						<div class="medium-3 small-12 columns">
 							<ul id="about-tabs" class="tabs vertical" data-tabs>
 								<?php $ctbs = 0?>
 								<?php foreach($tabs as $tab):?>
@@ -39,7 +39,7 @@
 						</div>
 						
 						<!-- Tabs Content -->
-						<div class="small-9  columns">
+						<div class="medium-9 small-12 columns">
 							<div id="about-tabs-content" class="tabs-content vertical" data-tabs-content="about-tabs">
 								
 								<?php $ctbss = 0?>

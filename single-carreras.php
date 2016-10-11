@@ -14,10 +14,15 @@
 						<!-- end .career-heading__content -->
 
 						<div class="small-12  medium-4  large-4  columns  text-left  medium-text-right  career-heading__certificate">
-							<?php if(get_field('etiqueta_acreditacion')){?>
+							<?php if(get_field('carrera_acreditada') == 'acreditada'){?>
 								<?php $badge = wp_get_attachment_image_src(get_field('etiqueta_acreditacion') , 'badgeAcreditacion')?>
 								
 								<img src="<?php echo $badge[0]?>" class="career-heading__certificate-image" alt="<?php echo get_field('periodo_de_acreditacion')?> años">
+								
+							<?php }elseif(get_field('carrera_acreditada') == 'en-proceso'){?>
+							
+								<img src="<?php echo get_bloginfo('template_directory')?>/images/career-certificate_proceso.png" class="career-heading__certificate-image" alt="En proceso de acreditación">
+								
 							<?php }else{?>
 								<img src="<?php echo get_bloginfo('template_directory')?>/images/career-certificate_not.png" class="career-heading__certificate-image" alt="Carrera no acreditada">
 							<?php }?>
@@ -69,8 +74,10 @@
 
 							<!-- Acreditación -->
 							<li class="career-details__list-item  career-details__list-item--accreditation">
-							<?php if(get_field('periodo_de_acreditacion')){?>
+							<?php if(get_field('carrera_acreditada') == 'acreditada'){?>
 								<span class="career-details__list-item-title">Acreditación</span>Acreditada por <?php echo get_field('periodo_de_acreditacion')?> años
+							<?php }elseif(get_field('carrera_acreditada') == 'en-proceso'){?>
+								<span class="career-details__list-item-title">Acreditación</span>En proceso de Acreditación
 							<?php }else{?>
 								<span class="career-details__list-item-title">Acreditación</span>Carrera no acreditada
 							<?php }?>	
@@ -90,10 +97,10 @@
 							<div class="career-block__content">
 								<?php echo apply_filters('the_content' , get_field('perfil_de_egreso'))?>
 							</div>
-							<h1 class="career-block__title">Campo Laboral</h1>
+							<?php /* <h1 class="career-block__title">Campo Laboral</h1>
 							<div class="career-block__content">
 								<?php echo apply_filters('the_content' , get_field('campo_laboral'))?>
-							</div>
+							</div> */?>
 						</div>
 						<!-- end .career-block -->
 
@@ -135,12 +142,12 @@
 									<?php echo apply_filters('the_content' , get_field('perfil_de_egreso'))?>
 								</div>
 							</div>
-							<div class="small-12 medium-5 large-4 columns">
+							<?php /* <div class="small-12 medium-5 large-4 columns">
 								<h1 class="career-block__title">Campo Laboral</h1>
 								<div class="career-block__content">
 									<?php echo apply_filters('the_content' , get_field('campo_laboral'))?>
 								</div>
-							</div>
+							</div> */?>
 						</div>
 					
 					<?php }?>

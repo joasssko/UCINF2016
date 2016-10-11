@@ -61,46 +61,46 @@
 							
 							<?php if($modulo["columnas"] == '1'){?>
 								
-								<div class="medium-12 small-12 columns">
+								<div class="small-12 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
 								</div>
 								<div class="clear separator border"></div>
 							<?php }elseif($modulo['columnas'] == '2'){?>
 								
-								<div class="medium-6 small-12 columns">
+								<div class="small-6 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
 								</div>
-								<div class="medium-6 small-12 columns">
+								<div class="small-6 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_2'])?>
 								</div>
 								<div class="clear separator border"></div>
 							<?php }elseif($modulo['columnas'] == '3'){?>
 								
-								<div class="medium-4 small-12 columns">
+								<div class="small-4 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
 								</div>
-								<div class="mediun-4 small-12 columns">
+								<div class="small-4 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_2'])?>
 								</div>
-								<div class="medium-4 small-12 columns">
+								<div class="small-4 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_3'])?>
 								</div>
 								
 							<?php }elseif($modulo['columnas'] == '1-2'){?>
 								
-								<div class="medium-4 small-12 columns">
+								<div class="small-4 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
 								</div>
-								<div class="medium-8 small-12 columns">
+								<div class="small-8 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_2'])?>
 								</div>
 								<div class="clear separator border"></div>
 							<?php }elseif($modulo['columnas'] == '2-1'){?>
 								
-								<div class="medium-8 small-12 columns">
+								<div class="small-8 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque'])?>
 								</div>
-								<div class="medium-4 small-12 columns">
+								<div class="small-4 columns">
 									<?php echo apply_filters('the_content' , $modulo['bloque_de_texto_2'])?>
 								</div>
 								<div class="clear separator border"></div>

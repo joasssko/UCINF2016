@@ -1,4 +1,4 @@
-@charset "utf-8";
+	@charset "utf-8";
 /*
 Theme Name: UCINF 2016
 Theme URL: http://www.ucinf.cl
@@ -247,7 +247,7 @@ header {
 				text-transform: uppercase;
 				letter-spacing: 0.05rem;
 				margin-top: -4px;
-				padding: 0.35rem 1.875rem !important;
+				padding: 0.35rem 1.875rem 0.135rem !important;
 				-webkit-border-radius: 5px;
 				-moz-border-radius: 5px;
 				border-radius: 5px;
@@ -258,6 +258,8 @@ header {
 				color: #FFFFFF;
 				background: #2B4066;
 			}
+
+#contactTop { color: #fff }
 
 /*	Main Navigation  
 ==================================================================================== */
@@ -314,6 +316,21 @@ header {
 		}
 		#main-nav .main-nav__menu-item-anchor .fa-angle-down {
 			margin: -4px 0 0;
+		}
+		.dropdown.menu>li.is-dropdown-submenu-parent>a:after {
+		    content: '';
+		    display: block;
+		    width: 6px;
+		    height: 6px;
+		    border: 5px inset;
+		    border-right: 1px solid #202d46;
+		    border-bottom: 1px solid #202d46;
+		    right: 2px;
+		    margin-top: -4px;
+		    background: transparent;
+		    border-top: 1px solid transparent;
+		    border-left: 1px solid transparent;
+		    transform: rotate(45deg);
 		}
 	#main-nav .main-nav__menu-item-anchor--social {
 		padding: 0 0.5rem !important;
@@ -397,6 +414,8 @@ header {
     height: auto;
 }
 
+	.is-dropdown-submenu{min-width: 270px;}
+
 		#main-nav .main-nav__submenu li:last-child a , #main-nav #mainmenu .sub-menu li:last-child a {
 			border-bottom: none;
 		}
@@ -407,8 +426,9 @@ header {
 
 /*	Other Links Submenu  */
 #main-nav #other-links {
-	min-width: 200px;
-	margin-top: 10px;
+	min-width: 215px;
+    margin-top: 10px;
+    padding: 0 10px;
 }
 	#main-nav #other-links:before {
 		right: 10px;
@@ -512,17 +532,19 @@ header {
 .sidebar-nav__menu {
 	border-bottom: 1px solid rgba(255,255,255,.1);
 }
-	.sidebar-nav__menu-item, 
-	.sidebar-nav__submenu-item {
+	.sidebar-nav__menu-item,  
+	.sidebar-nav__submenu-item, 
+	#mobilemenu .menu-item{
 		border-top: 1px solid rgba(255,255,255,.1);
 		border-bottom: 1px solid rgba(0,0,0,.25);
 	}
 		.sidebar-nav__menu-item-anchor, 
-		.sidebar-nav__submenu-item-anchor {
+		.sidebar-nav__submenu-item-anchor , 
+		#mobilemenu .menu-item a{
 			font-size: 0.875rem;
 			color: rgba(255,255,255,.75);
 			font-weight: 600;
-			text-transform: uppercase;
+			/*text-transform: uppercase;*/
 			padding: 0.875rem 0.9375rem 0.75rem !important;
 			/*border-top: 1px solid rgba(255,255,255,.1);
 			border-bottom: 1px solid rgba(0,0,0,.25);*/
@@ -556,7 +578,7 @@ header {
 		}
 
 /*	Sidebar Nav Submenu  */
-.sidebar-nav__submenu {
+.sidebar-nav__submenu , #mobilemenu .is-drilldown-submenu {
 	background: #202D46;
 }
 	.sidebar-nav__submenu .js-drilldown-back {
@@ -760,10 +782,11 @@ footer {
 		margin-top: 0.25rem;
 		display: block;
 	}
-.footer-block__menu-item {
+.footer-block__menu-item , .footer-block .menu-item {
 	margin-bottom: 0.9375rem;
+	display: block
 }
-.footer-block__menu-anchor {
+.footer-block__menu-anchor , .footer-block .menu-item a {
 	font-family: "Catamaran", sans-serif !important;
 	font-size: 0.9375rem;
 	color: rgba(255,255,255,.75);
@@ -1078,6 +1101,8 @@ footer {
 	#faculties-content .tabs-panel__block {
 		width: 50%;
 		right: 0;
+		left: 1.2375rem;
+    	bottom: 2.875rem;
 	}
 }
 
@@ -1253,9 +1278,32 @@ footer {
 	/*	Faculties | Media Queries  */
 /*	Large and up  */
 @media screen and (min-width: 64em) {
-	.news-block__content {padding-left: 0;}
+	/*.news-block__content {padding-left: 0;}*/
 	.news-block__heading-image {margin-bottom: 0;}
 }
+
+#modules {margin-top: 30px; border-bottom: 0 !important }
+#modules .border{ border-bottom:1px solid rgba(32, 45, 70, .1);}
+#modules table{ font-size:.75rem }
+#modules table td{ vertical-align: top}
+
+#modules .pestanas{ padding: 30px 0; border-bottom: 1px solid rgba(32, 45, 70, .1); margin-bottom: 30px}
+
+#modules p {
+    font-size: 0.9375rem;
+    color: #2B3549;
+}
+
+#modules h2{    font-size: 2rem;
+    color: rgba(43, 53, 73, .75);
+    font-weight: 600;
+    margin: 0 0 0.9375rem;}
+
+#modules h4{    font-size: 1.5rem;
+    color: rgba(43, 53, 73, .75);
+    font-weight: 600;
+    margin: 0 0 0.9375rem;}
+
 
 /*	Shortcuts  
 ==================================================================================== */
@@ -1767,6 +1815,8 @@ footer {
 					padding: 0 0.9375rem;
 				}
 
+.degree .tabs-panel__block-title{ min-height: 50px}
+
 
 /* ====================================================================================
 	UNIVERSITY PAGES CSS
@@ -2159,6 +2209,125 @@ footer {
 
 
 
+/*	Admision  
+==================================================================================== */
+
+.page-id-20 .degree a{ min-height: auto !important;  padding-bottom: 0px ! important}
+.page-id-20 .degree .tabs-panel__block-title {
+    min-height: auto;
+    padding: 20px 0 !important;
+    display: block;
+}
+
+#lastCall{ background-color: #01c0b1; color: #fff;  }
+#lastCall p{ padding: 75px}
+
+.page-id-20 #faculties{ margin-top: 60px}
+
+#wyucinf{
+    background-color: #af2069;
+    border-top: 8px solid #ffc403;
+    border-bottom: 8px solid #ffc403;
+    padding-bottom: 20px;
+	margin-top: 75px
+}
+
+.page-id-20 .tooltip:before {
+	border-color: transparent transparent #0a0a0a !important;
+}
+
+.tooltip {
+max-width: 17rem !important;
+}
+
+.page-id-20 label{ color:#fff }
+
+.page-id-20 input {
+    background-color: rgba(255,255,255,.3);
+    border: 1px solid #fff;
+}
+
+.page-id-20 h2{ color: #fff }
+
+
+
+.page-id-20 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #fff !important;
+}
+.page-id-20 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #fff !important;
+   opacity:  1;
+}
+.page-id-20 ::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:  #fff!important;
+   opacity:  1;
+}
+.page-id-20 :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #fff !important;
+}
+
+.page-id-20 ::-webkit-option { /* WebKit, Blink, Edge */
+    color: #000 !important;
+}
+.page-id-20 :-moz-option { /* Mozilla Firefox 4 to 18 */
+   color: #000 !important;
+   opacity:  1;
+}
+.page-id-20 ::-moz-option { /* Mozilla Firefox 19+ */
+   color:  #000 !important;
+   opacity:  1;
+}
+.page-id-20 :-ms-option{ /* Internet Explorer 10-11 */
+   color: #000 !important;
+}
+
+#wyucinf p.lead {
+    color: #fff;
+    padding: 75px;
+    background-color: #fe2f99;
+    margin-top: -35px;
+}
+
+
+.wpcf7-response-output{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 20px;
+    z-index: 99999;
+    margin: 0;
+    padding: 30px;
+    text-align: center;
+}
+
+.wpcf7-validation-errors {
+    background-color: #f7e700;
+}
+
+
+.wpcf7-mail-sent-ok {
+
+  background-color: #e21717;
+  
+}
+
+.wpcf7-mail-sent-ng {
+  background-color: #f30;
+}
+
+span.wpcf7-not-valid-tip {
+    color: #f00;
+    font-size: 11px;
+    display: inline-block;
+    position: relative;
+    right: 1px;
+    top: -43px;
+    width: auto;
+    text-align: right;
+    float: right;
+}
 
 /* ====================================================================================
 	MEDIA QUERIES
@@ -2171,4 +2340,283 @@ footer {
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.25), only screen and ( min-device-pixel-ratio: 1.25), only screen and ( min-resolution: 200dpi), only screen and ( min-resolution: 1.25dppx) {
     -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* min-width 641px, medium screens */
+@media only screen and (min-width: 40.063em) { 
+} 
+
+/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+/*	Header
+==================================================================================== */	
+	.menu>li>a img{
+		max-width: 195px;
+		margin-top: 5px;
+	}
+
+	.main-nav__menu{
+		margin-left: 0.235rem;
+		padding-top: 5px;
+	}
+		#main-nav .main-nav__menu-item-anchor, #main-nav #mainmenu.main-nav__menu li a{
+			font-size: 0.87500rem;
+		}
+		
+		#main-nav .main-nav__menu-item-anchor--social {
+		    padding: 0 0.125rem !important;
+		}
+
+
+/* Home
+==================================================================================== */	
+	.system-heading {
+	    margin-bottom: .875rem;
+	}	
+		.system-heading__title {
+		    font-size: 1.375rem;
+		}
+
+		.system-heading__text {
+		    font-size: 0.874655rem;
+		}
+
+		.system-block__title {
+		    font-size: 1.375rem;
+		}
+
+	.system-block--horizontal .system-block__content{
+		max-height:174px;
+	}
+
+		.tabs-panel__block-title{
+			line-height: 1.2;
+			font-size: 1.45rem;
+			margin-bottom: .65rem;
+		}
+
+		.tabs-panel__block-text{
+			font-size: 0.9375rem;
+			margin-bottom: .795rem;
+		}
+
+
+ } 
+
+
+@media screen and (max-width: 39.9375em) {
+
+	.main-heading {
+	    margin-bottom: 1.250rem;
+	}
+
+	.tabs-panel__block-title {
+		font-size: 1.05rem;
+	    color: #202D46;
+	    font-weight: bold;
+	    line-height: 1;
+	    text-transform: uppercase;
+	    margin-bottom: 0.01rem;
+	    margin-left: -3px;
+	}
+	
+	.tabs-panel__block-subtitle {
+	    font-size: 1.05rem;
+	    color: #202D46;
+	    font-weight: 400;
+	    line-height: 1;
+	    display: block;
+	}
+
+	.tabs-panel__block-wrapper .anchor-link {
+		font-size: 0.7rem;
+	}
+
+	.tabs-panel__block-wrapper {
+	    padding: 0.45rem .725rem .35rem;
+	    background: rgba(255,255,255,.75);
+	}
+
+	.benefits-block{
+		padding:0;
+	}
+	
+	#faculties-content .tabs-panel__block {
+		position: absolute;
+	    left: 0;
+	    bottom: 0;
+	    top: 0px;
+	    padding: 3px 3px;
+	    width: 100%;
+	}
+	
+	#faculties-tabs .tabs-title a {
+		font-size: .65rem;
+		padding: 0.5rem 0;
+		min-height: 48px;
+	}
+	
+		.button.white{
+			margin:0 auto;
+			display:block;
+			right: 0;
+    		left: 0;
+		}
+
+	.news-main__content-title {
+	    font-size: .9rem;
+	    color: #FFFFFF;
+	    font-weight: bold;
+	    text-transform: uppercase;
+	}
+
+	.testimony-media {
+	    margin-bottom: 1.35rem;
+	    max-height: 10.755rem;
+	}
+
+	.footer-contact__menu{
+		text-align: left;
+	}
+
+	.footer-block__menu-title{
+		margin-bottom: 1.25rem;
+	}
+
+	.footer-contact__menu-item-anchor {
+	    color: rgba(255,255,255,.75);
+	    font-weight: 600;
+	}
+
+	.footer-block {
+	    margin-bottom: 1.275rem;
+	}
+
+/*	Continuación de Estudios  
+==================================================================================== */	
+
+	#university-heading {
+	    padding-top: 3.875rem;
+	}
+
+	.main-heading__content-title {
+	    font-size: 1.75rem;
+	}
+
+		.main-heading__content-text p{
+			font-size: 0.955rem;
+		}
+
+	#facultie-system-tabs .tabs-title a{
+		font-size: 1.1rem;
+	}
+
+	#facultie-system-tabs .tabs-title a small{
+		font-size: 0.55rem;
+		line-height: .85rem;
+	}
+
+	#facultie-system-content .tabs-panel__block {
+	    margin-bottom: 1.05rem;
+	}
+
+		#facultie-system-content .tabs-panel__block-image{
+			display: none;
+		}
+
+		#facultie-system-content .tabs-panel__block-anchor {
+			min-height: 40px;
+		    padding-bottom: 0.125rem;
+		    padding-top: .120rem;
+		}
+
+		#facultie-system-content .tabs-panel__block-title {
+		    font-size: 0.8275rem;
+		    padding: 3px 0.9375rem;
+		}
+
+/*	Facultades
+==================================================================================== */	
+
+	.career-heading{
+		padding-top: 3.875rem;
+	}
+
+		.career-heading__content-title{
+			font-size: 1.125rem;
+		}
+
+			.career-heading__content-text p{
+				font-size: 0.955rem;
+			}
+
+		h1.news-block__content-title{
+			padding:0.625rem 0.9375rem;
+			font-size: 0.815rem;
+		}
+
+		p.news-block__content-excerpt{
+			padding:0.625rem 0.9375rem;	
+		}
+
+	.page-heading{
+		padding-top: 0.9375rem;
+	}
+
+	h3.page-intro__content-title {
+	    font-size: 1.5625rem;
+	    line-height: 1.2;
+	}
+
+	.accordion-title{
+		font-size: .950rem;
+		line-height: 1.2;
+	}
+
+/*	Facultades
+==================================================================================== */	
+
+	#modules table{
+		position:relative;
+		width:100%;
+		overflow-x:scroll;
+		display: block; 
+	}
+
+/*	Egresados
+==================================================================================== */	
+	.page .page-intro__content:last-child {
+	    max-height: 500px;
+	}
+
+		.button{
+			line-height:1.2;
+		}
+
+
+/*	Single
+==================================================================================== */		
+	.page-intro__content-wrapper{
+		height:auto;
+		padding-bottom: 0.9375rem;
+	}
+
+	.single .columns.page-intro__content:last-child {
+	    max-height: 120px;
+	}
+
+	.page-intro__content-title{
+		margin: 0 0 0.475rem;
+	}	
+
+		.facebook {
+		    float: left;
+		    margin-right: .935rem;
+		}
+
+		.twitter {
+		    float: left;
+		}
+
+
 }
