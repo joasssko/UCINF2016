@@ -305,7 +305,7 @@ function llamaDocentes(){
 	
 	<div class="small-12  medium-6  large-6  columns  person-block">
 		<div class="row">
-			<div class="small-12  medium-5  large-4  columns person-block__heading">
+			<div class="small-3  medium-5  large-4  columns person-block__heading">
 				<?php if(has_post_thumbnail($docente->ID)){?>
 				<?php echo get_the_post_thumbnail($docente->ID , 'thumbnail' , array('class' => 'person-block__heading-image' , 'alt' => $docente->post_title))?>
 				<?php }else{?>
@@ -314,7 +314,7 @@ function llamaDocentes(){
 			</div>
 			
 
-			<div class="small-12  medium-7  large-8  columns  person-block__info">
+			<div class="small-9  medium-7  large-8  columns  person-block__info">
 				<h1 class="person-block__info-name"><?php echo $docente->post_title ?></h1>
 				<p class="person-block__info-text"><?php echo get_field('titulo' , $docente->ID)?> - <?php echo get_field('estudios' , $docente->ID)?></p>
 				<?php if(get_field('email' , $docente->ID)){?>

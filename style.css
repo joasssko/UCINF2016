@@ -549,6 +549,27 @@ header {
 			/*border-top: 1px solid rgba(255,255,255,.1);
 			border-bottom: 1px solid rgba(0,0,0,.25);*/
 		}
+
+			.js-drilldown-back>a:before{
+				content: '';
+			    display: block;
+			    width: 0;
+			    height: 0;
+			    border: 6px inset;
+			    border-right-style: solid;
+			    border-left-width: 0;
+			    display: inline-block;
+			    vertical-align: middle;
+			    margin-right: .75rem;
+			    width: 5px;
+			    border-top: 1px solid;
+			    height: 5px;
+			    border-left: 1px solid;
+			    border-right: 1px solid transparent;
+			    border-bottom: 1px solid transparent;
+			    transform: rotate(-405deg);
+			}
+
 		.sidebar-nav__menu-item-anchor:hover, 
 		.sidebar-nav__menu-item-anchor:focus, 
 		.sidebar-nav__submenu-item-anchor:hover, 
@@ -968,7 +989,7 @@ footer {
 			padding-bottom: 2.875rem;
 			border-width: 0 1px 1px;
 			border-style: solid;
-			border-color: #202D46;
+			border:1px solid #202D46 !important;
 			position: relative;
 		}
 		.system-block--vertical .system-block__content {
@@ -1451,7 +1472,6 @@ footer {
 			color: #FFFFFF;
 			font-weight: bold;
 			text-transform: uppercase;
-			text-shadow: 1px 1px 3px rgba(0,0,0,.25);
 		}
 		.career-heading__content-text {
 			color: #FFFFFF;
@@ -2343,11 +2363,307 @@ span.wpcf7-not-valid-tip {
 }
 
 /* min-width 641px, medium screens */
-@media only screen and (min-width: 40.063em) { 
+@media screen and (max-width: 65em){ 
+/* Home
+==================================================================================== */	
+	#mobile-nav {
+	    height: 64px;
+	}
+
+	#system, .system-content--left {
+	    margin-bottom: .875rem;
+	}
+
+	.system-block--horizontal .system-block__content {
+	    max-height: 128px;
+	}
+
+		.system-block__title{
+			margin-bottom: 0;
+			font-size: 1.075rem;
+		}
+
+		.system-heading {
+		    margin-bottom: 1.475rem;
+		}
+
+	#slideshow p, #slideshow p > * {
+	    font-size: 25px !important;
+    	line-height: 1.2em !important;
+	}
+
+	#admission-bar{
+		min-height: 120px !important;
+		margin-bottom: 25px !important;
+	}
+
+		.admission-bar-block__button{
+			margin-top: 30px !important;
+		}
+
+	#faculties-tabs .tabs-title a{
+		font-size: .755rem;
+	}
+
+	.system-block__title {
+	    font-size: 1.175rem;
+	    margin-bottom:.2em;
+	}
+
+		.system-heading__text {
+		    font-size: 0.75rem;
+		}
+
+		.benefits-block__button{
+			bottom:2.5rem;
+		}
+
+	.news-block__content-title {
+	    font-size: 0.8175rem;
+	    margin-bottom: .2rem;
+	}
+
+	.shortcuts-block__title {
+	    font-size: 0.875rem;
+	}
+
+		.shortcuts-block__anchor{
+			padding: 1.875rem .875rem 0.9375rem;
+		}
+
+	.is-drilldown-submenu-parent>a:after{
+		display:none;
+	}
+
+	.show-for-medium{
+		display: none;
+	}
+
+		.page-intro__content-wrapper{
+			padding-top: 0
+		}
+
+	.anchor-link {
+	    clear: both;
+	    display: block;
+	    font-size: 0.775rem;
+	}
+
+	.shortcuts-block {
+	    max-height: 170px;
+	    margin-bottom: .795rem;
+	}
+
+		.shortcuts-block__anchor {
+		    padding: .875rem .175rem 0.9375rem;
+    		height: 170px;
+		}
+
+			.shortcuts-block__icon {
+			    margin-bottom: 0.5375rem;
+			}
+
+			.shortcuts-block__title {
+			    font-size: 0.875rem;
+			    margin-bottom: .235rem;
+			}
+
+			.shortcuts-block__text {
+			    font-size: 0.755rem;
+			    line-height: 1.3;
+			    margin-bottom: 0;
+			}
+
+	.news-block__heading {
+	    display: none;
+	}
+
+
+
+/*	Minor
+==================================================================================== */	
+	.main-heading {
+	    margin-bottom: 1.25rem;
+	    height: 260px;
+	}
+
+	.page-id-34 .page-intro__content {
+	    min-height: 180px;
+	    clear: both;
+	}
+
+	.page-id-34 .page-intro__content:last-child {
+	    max-height: 180px;
+	}
+
+/*	La universidad
+==================================================================================== */	
+	.page-id-8 .medium-3{
+		clear:both;
+	}
+
+	#university-heading{
+		height:260px;
+	}
+
+	#university-container{
+		min-height: 100% !important;
+	}
+
+	.page-intro__content {
+	    height: 100% !important;
+	}
+
+		.page-intro__content-title{
+			padding-top: 0.9375rem;
+		}
+
+		.person-block:last-child:not(:first-child) {
+		    float: left;
+		}
+
+	#about-tabs-content .tabs-panel{
+		padding: 10px 5px;
+	}
+
+		#about-tabs-content .tabs-panel__title {
+		    font-size: 1.25rem;
+		}
+
+/*	Facultades
+==================================================================================== */	
+	#facultie-about {
+	    padding-top: 1.875rem;
+	    padding-bottom: 1.875rem;
+	}
+
+		#facultie-system {
+		    padding-top: .875rem;
+		    padding-bottom: .875rem;
+		}
+	
+	.news-main__content-title {
+	    font-size: .875rem;
+	}
+
+		.news-main__content-excerpt {
+		    font-size: 0.7375rem;
+		    color: #FFFFFF;
+		    margin-bottom: .875rem;
+		    font-weight: 700;
+		    display: none;
+		}
+
+	.career-heading {
+	    padding-top: 2.875rem;
+	    height: 260px;
+	    margin-bottom: .475rem;
+	}
+
+		.career-heading__content-title{
+			font-size: 1.65rem;
+			margin-bottom:.25rem;
+			text-shadow: 1px 1px 2px #2b4066;
+		}
+
+		.career-heading__content-text{
+			line-height: 1.4;
+			text-shadow: 1px 1px 1px #2b4066;
+		}
+
+/*	Postgrado
+==================================================================================== */	
+	.main-heading {
+	    height: 260px;
+	}
+
+		#university-heading{
+			padding-top: 2.875rem;			
+		}
+
+		.main-heading__content-text p {
+		    font-size: .825rem;
+    		line-height: 1.3;
+		}
+
+		.main-heading__content-title{
+			font-size: 1.65rem;
+			margin-bottom:.25rem;
+			text-shadow: 1px 1px 2px #2b4066;
+		}
+
+		.main-heading__content-text{
+			line-height: 1.4;
+		}
+
+/*	Postgrado
+==================================================================================== */	
+		.page-id-36 .page-intro__divider{
+			display:none;
+		}
+
+/*	Capa
+==================================================================================== */	
+		.page-id-36 .page-intro__content:last-child{
+			max-height: 101px;
+		} 
+
+/*	Biblioteca
+==================================================================================== */	
+		#about-tabs .tabs-title a {
+		    font-size: .765rem;
+		    padding: 1.25rem .775rem;
+		    line-height: 1.4;
+		}
+
+/*	DAE
+==================================================================================== */	
+	.page-id-28 .page-intro__content {
+	    max-height: 185px;
+	}
+
+		.page-id-28 .show-for-medium {
+		    display: none;
+		}
+
+		.page-id-28 .page-intro__content:last-child{
+			min-height: 280px;
+		}
+
+		.banners-block__content-text{
+			display:none;
+		}
+
+		/* Deportes */
+		.page-id-169 .page-intro__content:last-child{
+			display:none;
+		}
+
+/* Admisión
+==================================================================================== */	
+	#wyucinf p.lead, #lastCall p {
+		padding: 15px;
+	}
+
+	#facultie-system-content .tabs-panel__block-title {
+	    font-size: 0.7275rem;
+	}
+
+    .form-container.row {
+	    margin-right: 10px;
+	    margin-bottom: 15px;
+	}
+
 } 
 
 /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
+	h2 {
+	    font-size: 1.55rem;
+	}
+	h3 {
+	    font-size: 1.4375rem;
+	}
 /*	Header
 ==================================================================================== */	
 	.menu>li>a img{
@@ -2367,14 +2683,17 @@ span.wpcf7-not-valid-tip {
 		    padding: 0 0.125rem !important;
 		}
 
-
 /* Home
 ==================================================================================== */	
+	.main-heading {
+    	padding-top: 5.875rem;
+    }
+
 	.system-heading {
 	    margin-bottom: .875rem;
 	}	
 		.system-heading__title {
-		    font-size: 1.375rem;
+		    font-size: 1.115rem;
 		}
 
 		.system-heading__text {
@@ -2382,7 +2701,11 @@ span.wpcf7-not-valid-tip {
 		}
 
 		.system-block__title {
-		    font-size: 1.375rem;
+		    font-size: 1.175rem;
+		}
+
+		.system-block__subtitle {
+		    font-size: .815rem;
 		}
 
 	.system-block--horizontal .system-block__content{
@@ -2400,14 +2723,151 @@ span.wpcf7-not-valid-tip {
 			margin-bottom: .795rem;
 		}
 
+	.banners-block__content {
+	    padding-top: 0.5375rem;
+	}
+
+		.banners-block__content-title{
+			font-size: 1.05rem;
+			line-height: 1.5em;
+			height: 28px;
+			margin-bottom: 0.5rem;
+		}
+
+		.banners-block__content-text {
+		    font-size: 0.755rem;
+		    margin-bottom: 0.05rem;
+		}
+
+		.anchor-link{
+			font-size: .755rem;
+		}
+
+		.shortcuts-block__text {
+		    font-size: 0.755rem;
+		}
+
+	.benefits-block__title{
+		font-size: 1.45rem;
+	}
+
+	.benefits-block__text{
+		font-size: 0.9375rem;
+    	margin-bottom: .795rem;
+    }
+
+		.footer-block__menu-title{
+			font-size: 1.25rem;
+			margin-bottom: 1.255rem;
+		}
+
+/* Noticias
+==================================================================================== */	
+	.news-block__content-title{
+		font-size: 0.9175rem;
+		line-height: 1.3;
+		margin-bottom: .2rem;
+	}
+
+	.page-heading {
+	    margin-bottom: 1.175rem;
+	    padding-top: 1.875rem;
+	}
+
+	.main-heading {
+	    margin-bottom: 1.25rem;
+	    height:300px;
+	}
+
+	#university-heading {
+	    padding-top: 3.875rem;
+	}
+
+	.banners-container {
+	    padding-top: 1.875rem;
+	}
+
+/* Acreditación
+==================================================================================== */	
+	.page-intro {
+	    padding-bottom: .875rem;
+	}
+
+/* Facultades
+==================================================================================== */	
+	#facultie-system {
+	    padding-top: 1.875rem;
+	}
+
+		.facultie-system__title{
+			font-size: 1.35rem;
+			margin: 0 0 1.375rem;
+		}
+			
+			.person-block__info-name{
+				font-size: 0.8375rem;
+			}
+
+			.person-block__info-text{
+				font-size: 0.775rem;
+			}
+	
+/* Egresados
+==================================================================================== */	
+	#modules{
+		padding-top: 10px;
+    	margin-top: 10px;
+	}
+		#modules h2{
+			font-size: 1.55rem;
+		}
+
+		[data-whatinput=mouse] .button{
+			margin-bottom:0;
+		}
+
+/* Biblioteca
+==================================================================================== */	
+	.page-intro__content-title{
+		font-size: 1.25rem;
+	}
+
+	#modules .pestanas{
+		padding: 15px 0;
+		margin-bottom: 15px;
+	}
+
+		#modules h4{
+			margin: 0 0 0.6375rem;
+		}
+
+		#about-tabs-content .tabs-panel__title{
+			font-size: 1.25rem;
+		}
+
+
+/* Single
+==================================================================================== */	
+	.career-heading {
+		padding-top: 4.875rem;
+	    height: 300px;
+	    margin-bottom: .875rem;
+	}
+
+/* Admisión
+==================================================================================== */	
+	#wyucinf p.lead, #lastCall p {
+		padding: 15px;
+	}
 
  } 
 
-
+/* max-width 640px, mobile-only styles, use when QAing mobile issues */
 @media screen and (max-width: 39.9375em) {
 
 	.main-heading {
 	    margin-bottom: 1.250rem;
+	    padding-top: 2.750rem;
 	}
 
 	.tabs-panel__block-title {
@@ -2468,6 +2928,7 @@ span.wpcf7-not-valid-tip {
 	    color: #FFFFFF;
 	    font-weight: bold;
 	    text-transform: uppercase;
+	    text-shadow: 1px 1px 2px #2b4066;
 	}
 
 	.testimony-media {
@@ -2489,8 +2950,31 @@ span.wpcf7-not-valid-tip {
 	}
 
 	.footer-block {
-	    margin-bottom: 1.275rem;
+	    margin-bottom: .275rem;
 	}
+
+	footer {
+	    padding-top: 1.875rem;
+	}
+
+		.footer-contact__menu-item {
+		    font-size: 0.7295rem;
+		    line-height: 25px;
+		    float: left;
+		    display: block;
+		    text-align: left;
+		    margin-right: 14px;
+		}
+
+		.footer-contact__menu-divider{
+			display: none;
+		}
+
+		.footer-contact__social-item {
+		    margin-left: 0;
+		    float: left;
+		    margin-right: 0.5rem;
+		}
 
 /*	Continuación de Estudios  
 ==================================================================================== */	
@@ -2501,24 +2985,31 @@ span.wpcf7-not-valid-tip {
 
 	.main-heading__content-title {
 	    font-size: 1.75rem;
+	    text-shadow: 1px 1px 2px #2b4066;
 	}
 
 		.main-heading__content-text p{
 			font-size: 0.955rem;
 		}
 
-	#facultie-system-tabs .tabs-title a{
-		font-size: 1.1rem;
+	.facultie-system__title{
+		font-size: 1.25rem;
+		margin: 0 0 .875rem;
 	}
 
-	#facultie-system-tabs .tabs-title a small{
-		font-size: 0.55rem;
-		line-height: .85rem;
-	}
+		#facultie-system-tabs .tabs-title a{
+			font-size: .785rem;
+		}
 
-	#facultie-system-content .tabs-panel__block {
-	    margin-bottom: 1.05rem;
-	}
+		#facultie-system-tabs .tabs-title a small{
+			font-size: 0.55rem;
+			line-height: .85rem;
+			display:none;
+		}
+
+		#facultie-system-content .tabs-panel__block {
+		    margin-bottom: 1.05rem;
+		}
 
 		#facultie-system-content .tabs-panel__block-image{
 			display: none;
@@ -2551,12 +3042,14 @@ span.wpcf7-not-valid-tip {
 			}
 
 		h1.news-block__content-title{
-			padding:0.625rem 0.9375rem;
-			font-size: 0.815rem;
+			padding: 0.625rem 0.9375rem;
+		    font-size: 0.815rem;
+		    text-transform: none;
 		}
 
 		p.news-block__content-excerpt{
 			padding:0.625rem 0.9375rem;	
+			display:none;
 		}
 
 	.page-heading{
@@ -2571,6 +3064,39 @@ span.wpcf7-not-valid-tip {
 	.accordion-title{
 		font-size: .950rem;
 		line-height: 1.2;
+	}
+
+		.career-heading__certificate {
+		    display: none;
+		}
+
+			.single #features-tabs.tabs--by-4 .tabs-title {
+			    width: 100%;
+			}
+
+			.single .tabs-panel {
+			    min-height: 155px;
+			}
+
+				.single #features-content .tabs-panel__block{
+					padding:0;
+				}
+
+					.tabs-panel__block-text {
+					    font-size: 0.7375rem;
+					    margin-bottom: .875rem;
+					}
+				
+				.person-block{
+					padding:0 5px;
+				}
+					.person-block__heading, .person-block__info {
+					    padding: 0 5px;
+					}
+
+	#features {
+	    margin-bottom: .875rem;
+	    display: none;
 	}
 
 /*	Facultades
@@ -2616,6 +3142,21 @@ span.wpcf7-not-valid-tip {
 
 		.twitter {
 		    float: left;
+		}
+
+/*	Admisión
+==================================================================================== */		
+		.form-container {
+		    padding: 0 15px;
+		}
+
+		#faculties-tabs.tabs--by-4 .tabs-title{
+			width:100%;
+		}
+
+		#wyucinf p.lead, #lastCall p {
+		    padding: 15px;
+		    font-size: 15px;
 		}
 
 

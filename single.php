@@ -9,7 +9,7 @@ $bgsrc = wp_get_attachment_image_src($bgid,'head', true);
 	<!-- Career Heading -->
 	<section class="row  row-wide  career-heading" style="background:url('<?php echo $bgsrc[0]?>') scroll no-repeat top center #FFFFFF;">
 		<div class="row">
-			<div class="small-12  medium-8  large-7  columns  carrer-heading__content">
+			<div class="small-12  medium-8  large-10  columns  carrer-heading__content">
 				<h1 class="career-heading__content-title  open"><?php echo $post->post_title ?></h1>
 				
 			</div>
@@ -108,7 +108,7 @@ $bgsrc = wp_get_attachment_image_src($bgid,'head', true);
 		<div class=" news-container">
 				<?php foreach($news as $article): ?>
 				<!-- New 1 -->
-				<article class="small-6  columns  news-block">
+				<article class="medium-6  small-12 columns  news-block">
 					<div class="row">
 						<div class="small-12  medium-4  large-4  columns  news-block__heading">
 							<a href="<?php echo get_permalink($article->ID)?>" class="news-block__heading-anchor" title="Leer más">

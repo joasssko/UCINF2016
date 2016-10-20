@@ -89,7 +89,7 @@
 					<!-- end .career-details -->
 					
 					
-					
+							<?php /* ?>		
 					<?php if(get_field('testimonio')){?>
 						<!-- Perfil de Egreso / Campo Laboral -->
 						<div class="small-12  medium-6  large-7  columns  career-block">
@@ -103,7 +103,7 @@
 							</div> */?>
 						</div>
 						<!-- end .career-block -->
-
+				<?php /* ?>
 						<?php $test = get_field('testimonio')?>				
 						<?php $testimonio = get_post( $test[0] )?>
 
@@ -134,7 +134,7 @@
 						</div>
 						<!-- end .career-testimony -->
 					<?php }else{?>
-					
+									<?php /* ?>
 						<div class="career-block">
 							<div class="small-12 medium-7 large-8 columns">
 								<h1 class="career-block__title">Perfil de Egreso</h1>
@@ -147,15 +147,16 @@
 								<div class="career-block__content">
 									<?php echo apply_filters('the_content' , get_field('campo_laboral'))?>
 								</div>
-							</div> */?>
-						</div>
-					
-					<?php }?>
-					
-				</section>
+							</div> */?>	<?php /* ?>
+						</div>		<?php */ ?>
+									<?php /* ?>
+					<?php }?>		<?php */ ?>
+									<?php /* ?>
+				</section>		<?php */ ?>
+						
 				<!-- end .career-main -->
-				
-				
+
+												
 				
 				<!-- Faculties (Facultades) -->
 				<!--<section id="features" class="row" data-interchange="[partials/_home/categories.html, small]"></section>-->
@@ -223,7 +224,7 @@
 						<div class="  news-container">
 								<?php foreach($news as $article): ?>
 								<!-- New 1 -->
-								<article class="small-6  columns  news-block">
+								<article class="medium-6 small-12 columns  news-block">
 									<div class="row">
 										<div class="small-12  medium-4  large-4  columns  news-block__heading">
 											<a href="<?php echo get_permalink($article->ID)?>" class="news-block__heading-anchor" title="Leer más">

@@ -45,11 +45,11 @@
 				<section id="facultie-about" class="row  row-wide">
 					<div class="row">
 						<!-- Tabs -->
-						<div class="small-3  columns">
+						<div class="medium-3 small-12 columns">
 							<ul id="about-tabs" class="tabs vertical" data-tabs>
 								<li class="tabs-title is-active"><a href="#panel_about">Sobre la Facultad <i class="fa fa-angle-right fa-fw trsn"></i></a></li>
-								<li class="tabs-title"><a href="#panel_mission" aria-selected="true">Misión <i class="fa fa-angle-right fa-fw trsn"></i></a></li>
-								<li class="tabs-title"><a href="#panel_vision">Visión <i class="fa fa-angle-right fa-fw trsn"></i></a></li>
+								<?php /* <li class="tabs-title"><a href="#panel_mission" aria-selected="true">Misión <i class="fa fa-angle-right fa-fw trsn"></i></a></li>
+								<li class="tabs-title"><a href="#panel_vision">Visión <i class="fa fa-angle-right fa-fw trsn"></i></a></li> */?>
 								<?php /* <li class="tabs-title"><a href="#panel_philosophy">Filosofía <i class="fa fa-angle-right fa-fw trsn"></i></a></li>
 								<li class="tabs-title"><a href="#panel_resume">Currículum <i class="fa fa-angle-right fa-fw trsn"></i></a></li> */?>
 								<li class="tabs-title"><a href="#panel_president">El Decano <i class="fa fa-angle-right fa-fw trsn"></i></a></li>
@@ -61,9 +61,9 @@
 						</div>
 						
 						<!-- Tabs Content -->
-						<div class="small-9  columns">
+						<div class="medium-9 small-12 columns">
 							<div id="about-tabs-content" class="tabs-content vertical" data-tabs-content="about-tabs">
-								
+								<?php /* 
 								<!-- Panel Mission (Misión) -->
 								<div id="panel_mission" class="tabs-panel">
 									<h1 class="tabs-panel__title">Misión</h1>
@@ -83,7 +83,7 @@
 									<!-- end .tabs-panel__content -->
 								</div>
 								<!-- end #panel_vision -->
-
+ */?>
 								<!-- Panel About (Sobre la Facultad) -->
 								<div id="panel_about" class="tabs-panel is-active">
 									<h1 class="tabs-panel__title">Sobre la Facultad</h1>
@@ -394,6 +394,8 @@
 
 				
 				
+<?php /* ?>
+
 				<?php $testimonios = get_posts(array('post_type' => 'testimonios' , 'numberposts' => 1 , 'facultad' => $post->post_name))?>
 				<?php if($testimonios){?>
 				<!-- Testimony (Testimonios) -->
@@ -427,6 +429,8 @@
 					<!-- end .row -->
 				</section>
 				<?php }?>
+<?php */ ?>
+
 				
 				
 				
