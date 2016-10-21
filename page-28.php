@@ -89,7 +89,7 @@
 				<!-- end .cards-container -->
 				
 				
-				<!-- Banners (Acreditación y La Universidad) -->
+				<?php /* <!-- Banners (Acreditación y La Universidad) -->
 				<section id="banners" class="row  banners-container">
 					<!-- Becas y Créditos -->
 					<div class="small-12  medium-6  large-6  columns  banners-block  banners-block--left">
@@ -141,7 +141,7 @@
 					</div>
 					<!-- end .banners-block -->
 				</section>
-				<!-- end #banners -->
+				<!-- end #banners --> */?>
 				
 				<!-- News (Noticias) -->
 				<?php $news = get_posts(array('post_type' => 'post' , 'numberposts' => 4 , 'category' => 14)) ?>

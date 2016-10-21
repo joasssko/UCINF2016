@@ -24,7 +24,7 @@
 								<img src="<?php echo get_bloginfo('template_directory')?>/images/career-certificate_proceso.png" class="career-heading__certificate-image" alt="En proceso de acreditación">
 								
 							<?php }else{?>
-								<img src="<?php echo get_bloginfo('template_directory')?>/images/career-certificate_not.png" class="career-heading__certificate-image" alt="Carrera no acreditada">
+								<?php /* <img src="<?php echo get_bloginfo('template_directory')?>/images/career-certificate_not.png" class="career-heading__certificate-image" alt="Carrera no acreditada"> */?>
 							<?php }?>
 						</div>
 					</div>
@@ -41,6 +41,14 @@
 							<?php echo apply_filters('the_content' , $post->post_content)?>
 						</div>
 						<!-- end .career-block-content -->
+						
+						<div class="clear separator"></div>
+						
+						<h1 class="career-block__title">Perfil de Egreso</h1>
+						<div class="career-block__content">
+							<?php echo apply_filters('the_content' , get_field('perfil_de_egreso'))?>
+						</div>
+						
 					</div>
 					<!-- end #career-main__description / .career-block -->
 					
@@ -49,7 +57,11 @@
 						<ul class="no-bullet  career-details__list">
 							<li class="career-details__list-item  career-details__list-item--heading">
 								<span class="career-details__list-item-title">Malla del Programa</span>
-								<a href="#" class="button  small radius  white  career-details__list-item-button" title="Descarga la Malla">Descarga la Malla</a>
+								
+								<?php $mallaID = get_field('malla_del_programa')?>
+								<?php $mallaLink =  wp_get_attachment_url($mallaID)?>
+								
+								<a href="<?php echo $mallaLink ?>" class="button  small radius  white  career-details__list-item-button" title="Descarga la Malla">Descarga la Malla</a>
 							</li>
 							<!-- end .career-details-list-heading -->
 							
@@ -89,7 +101,8 @@
 					<!-- end .career-details -->
 					
 					
-							<?php /* ?>		
+					
+							<?php /* ?>
 					<?php if(get_field('testimonio')){?>
 						<!-- Perfil de Egreso / Campo Laboral -->
 						<div class="small-12  medium-6  large-7  columns  career-block">

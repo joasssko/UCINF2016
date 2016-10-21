@@ -332,8 +332,9 @@
 				<!-- end #faculties -->
 				
 
+				
 				<!-- Banners (Vinculación y Continuidad) -->
-				<section id="facultie-banners" class="row  row-wide  banners">
+				<?php /* <section id="facultie-banners" class="row  row-wide  banners">
 					<div class="row">
 						<!-- Acreditation -->
 						<div class="small-12  medium-6  large-6  columns  banners-block  banners-block--left">
@@ -389,7 +390,7 @@
 						<!-- end .banners-block -->
 					</div>
 					<!-- end .row -->
-				</section>
+				</section> */?>
 				<!-- end #facultie-banners -->
 
 				

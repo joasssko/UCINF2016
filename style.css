@@ -165,6 +165,7 @@ h1, h2, h3, h4, h5, h6 {font-family: 'Montserrat', sans-serif !important;}
 	/*	Content  */
 	.main-heading__content {
 		margin-bottom: 0.9375rem;
+		background-color: rgba( 0 , 0 , 0 , .2 );
 	}
 	.main-heading__content--right {
 		padding-top: 3.65rem;
@@ -1466,6 +1467,7 @@ footer {
 	/*	Content  */
 	.carrer-heading__content {
 		margin-bottom: 0.9375rem;
+		background-color: rgba( 0 , 0 , 0 , .2 );
 	}
 		.career-heading__content-title {
 			font-size: 2.25rem;

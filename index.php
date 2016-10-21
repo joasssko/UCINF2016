@@ -317,7 +317,7 @@
 								<!-- end .benefits-block -->
 
 								<div class="small-12  medium-4  large-5  columns  text-left  medium-text-right  benefits-block" data-equalizer-watch="benefits-block">
-									<a href="<?php echo get_page_link('30')?>" class="button  radius  white  benefits-block__button" title="Ver los Beneficios">Ver los Beneficios</a>
+									<a href="<?php echo get_page_link('192')?>" class="button  radius  white  benefits-block__button" title="Ver los Beneficios">Ver los Beneficios</a>
 								</div>
 								<!-- end .benefits-block -->
 							</div>

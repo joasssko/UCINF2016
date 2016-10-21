@@ -82,6 +82,9 @@
 </div>
 <!-- end .footer-top -->
 
+
+
+
 <!-- Footer Contact -->
 <div class="row  footer-contact">
 	<div class="small-12  columns"><hr class="footer-contact__divider"></div>
@@ -163,7 +166,22 @@
 	<!-- Slick Slider JS -->
 	<!--<script type="text/javascript" src="plugins/slick-slider/slick.min.js"></script>-->
 
+
+<div class="reveal" id="modalChat" data-reveal>
 	
+	<iframe src="http://200.54.201.81/hermes_net_v4/chatucinf/index.html" width="570" height="640" frameborder="0"></iframe>
+
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div data-open="modalChat" id="levantachat"><img src="<?php echo get_bloginfo('template_directory')?>/images/iniciachat.png" width="200" alt=""></div>
+<style>
+	#levantachat{display:block; position: fixed; bottom: 0 ; right: 10px; }
+	.reveal-overlay{ z-index:999999999}
+</style>
+
 </body>
 
 <?php wp_footer()?>
